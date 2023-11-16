@@ -1,0 +1,63 @@
+
+@import '../style.css';
+
+
+
+.main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main p {
+    font-family: Inter;
+}
+
+.main img {
+    position: relative;
+    width: 100%;
+    height: auto;
+}
+
+.main .home-title {
+    position: absolute;
+}
+
+.main .home-title .school-name {
+    font-size: 35px;
+    color: #106BBF;
+    font-weight: bold;
+    -webkit-text-stroke: 1px #FFFFFF;
+    text-align: center;
+}
+
+.main .home-title .service-name {
+    font-size: 60px;
+    color: #2096F3;
+    font-weight: bold;
+    -webkit-text-stroke: 1px #FFFFFF;
+    text-align: center;
+}
+
+
+
+
+
+.body p {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--fontColor);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
