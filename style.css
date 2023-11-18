@@ -170,9 +170,9 @@ section {
 
 
 
-  
+
 .footer {
-    background: url(../images/footer-bg.jpg) no-repeat;
+    background: url(images/footer-bg.jpg) no-repeat;
     background-size: cover;
     background-position: center;
 }
@@ -219,7 +219,7 @@ section {
 }
 
 .location-icon {
-    background: url('../images/211854_location_icon.svg') no-repeat;
+    background: url('images/211854_location_icon.svg') no-repeat;
     display: block;
     width: 26px;
     height: 26px;
@@ -227,7 +227,7 @@ section {
 }
 
 .phone-icon {
-    background: url('../images/1608790_phone_icon.svg') no-repeat;
+    background: url('images/1608790_phone_icon.svg') no-repeat;
     display: block;
     width: 16px;
     height: 16px;
@@ -235,7 +235,7 @@ section {
 }
 
 .email-icon {
-    background: url('../images/8665305_envelope_email_icon.svg') no-repeat;
+    background: url('images/8665305_envelope_email_icon.svg') no-repeat;
     display: block;
     width: 16px;
     height: 16px;
