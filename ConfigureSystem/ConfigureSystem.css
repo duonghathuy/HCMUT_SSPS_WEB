@@ -8,3 +8,92 @@
 .header .right-side .spso-name, .header .right-side .seperator{
     font-size: 16px;
 }
+form{
+    padding: 40px;
+}
+form>div{
+    font-size: 20px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    display: flex;
+    flex-flow: wrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 40%;
+}
+form>div.supply-date{
+    width: 70%;
+}
+form input{
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: white;
+    padding: 0.5em;
+    height: 2.5em;
+    width: 30%;
+}
+form input:focus{
+    background-color: #ddd;
+    outline: none;
+}
+form>div.supply-date>input{
+    width: 15%;
+}
+form>div.supply-date>input:focus{
+    background-color: #ddd;
+    outline: none;
+}
+.file-extension{
+    width: 50%;
+}
+.file-extension input{
+    width: 50%;
+    min-width: fit-content;
+}
+.extension-setting-button button{
+    background-color: rgb(45, 123, 48);
+    height: 3em;
+    width: 80px;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    color: white;
+}
+.extension-setting-button button:hover{
+    opacity: 80%;
+}
+.extension-setting-button button:active{
+    opacity: 50%;
+}
+.permitted-file-type{
+    overflow-x: auto;
+    width: 50%;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+.permitted-file-type table{
+    border-collapse: separate;
+    border-spacing: 10px;
+}
+.permitted-file-type td{
+    border: 1px solid black;
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: rgb(184,193,202,255);;
+}
+form>.submit-button>button{
+    background-color: rgb(66,138,202,255);
+    height: 3em;
+    width: 80px;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    color: white;
+}
+form>.submit-button>button:hover{
+    opacity: 80%;
+}
+form>.submit-button>button:active{
+    opacity: 50%;
+}

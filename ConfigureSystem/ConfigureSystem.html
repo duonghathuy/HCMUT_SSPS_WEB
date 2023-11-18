@@ -8,6 +8,7 @@
         <!-- custom css file link -->
         <link rel="stylesheet" href="../style.css">
         <link rel="stylesheet" href="ConfigureSystem.css">
+        <script src="ConfigureValidation.js"></script>
     </head>
     <body>
         <!-- header section starts -->
@@ -42,18 +43,40 @@
 
         <div class="body">
             <h1 class="title">Cấu hình hệ thống</h1>
-            <form name="configure-system">
+            <form name="configure-system" action="" onsubmit="return ValidateConfiguration()">
                 <div>
-                    Số giấy in mặc định: <input type="text" placeholder="100">
+                    Số giấy in mặc định: <input type="text" name="numberOfPages" placeholder="100" min="0">
                 </div>
-                <div>
-                    Thời điểm cung cấp giấy in: <input type="date">
+                <div class="supply-date">
+                    Thời điểm cung cấp giấy in:
+                    <input type="time" name="supplyTime" value="00:00">
+                    <input type="date" name="supplyDate" value="2023-01-16">
                 </div>
-                <div>
-                    Định dạng tập tin cho phép:<br>
-
+                <div class="file-extension">
+                    Định dạng tập tin cho phép:
+                    <input type="text" name="extension" placeholder="Điền tên định dạng cần thêm hoặc xóa">
+                    <div class="extension-setting-button">
+                        <button type="button">Thêm</button>
+                        <button type="button">Xóa</button>
+                    </div>
                 </div>
-                <div>
+                <div class="permitted-file-type">
+                    <table>
+                        <tr>
+                            <td>.docx</td>
+                            <td>.doc</td>
+                            <td>.pdf</td>
+                            <td>.odt</td>
+                            <td>.xls</td>
+                            <td>.xlsx</td>
+                            <td>.png</td>
+                            <td>.jpg</td>
+                            <td>.GIF</td>
+                            <td>.AI</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="submit-button">
                     <button type="submit">Lưu</button>
                 </div>
             </form>
