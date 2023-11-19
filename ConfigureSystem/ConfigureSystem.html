@@ -5,7 +5,6 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Cấu hình hệ thống</title>
-        <!-- custom css file link -->
         <link rel="stylesheet" href="../style.css">
         <link rel="stylesheet" href="ConfigureSystem.css">
         <script src="ConfigureValidation.js"></script>
@@ -43,9 +42,9 @@
 
         <div class="body">
             <h1 class="title">Cấu hình hệ thống</h1>
-            <form name="configure-system" action="" onsubmit="return ValidateConfiguration()">
+            <form name="configure-system" onsubmit="return ValidateConfiguration()">
                 <div>
-                    Số giấy in mặc định: <input type="text" name="numberOfPages" placeholder="100" min="0">
+                    Số giấy in mặc định: <input type="number" name="numberOfPages" placeholder="100" min="0">
                 </div>
                 <div class="supply-date">
                     Thời điểm cung cấp giấy in:
@@ -56,8 +55,8 @@
                     Định dạng tập tin cho phép:
                     <input type="text" name="extension" placeholder="Điền tên định dạng cần thêm hoặc xóa">
                     <div class="extension-setting-button">
-                        <button type="button">Thêm</button>
-                        <button type="button">Xóa</button>
+                        <button type="button" onclick="AddExtension()">Thêm</button>
+                        <button type="button" onclick="RemoveExtension()">Xóa</button>
                     </div>
                 </div>
                 <div class="permitted-file-type">
