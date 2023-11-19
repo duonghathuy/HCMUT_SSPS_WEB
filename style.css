@@ -84,6 +84,16 @@ section {
     text-decoration: underline;
 }
 
+.header .right-side{
+    display: flex;
+    flex-flow: wrap;
+    align-items: center;
+    width: 200px;
+    justify-content: space-around;
+}
+.header .right-side .username, .header .right-side .seperator{
+    font-size: 16px;
+}
 
 .header .left-side .menu-bar {
     margin-left: 40px;
