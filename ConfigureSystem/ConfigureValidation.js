@@ -2,6 +2,7 @@ function ValidateConfiguration(){
     let numberOfPagesInput = document.querySelector("input[name='numberOfPages']");
     let numberOfPages = Number(numberOfPagesInput.value);
     if ((Number.isInteger(numberOfPages) == false) || (numberOfPages < 0)){
+        numberOfPagesInput.focus();
         window.alert("Số trang phải là số nguyên dương\n");
         return false;
     }
@@ -25,10 +26,12 @@ function RemoveExtension(){
 }
 function IsExtensionValid(extension){
     if (extension.value == ""){
+        extension.focus();
         window.alert("Vui lập nhập tên extension\n");
         return false;
     }
     if (extension.value.indexOf(".") != 0){
+        extension.focus();
         window.alert("Tên extension không hợp lệ\n");
         return false;
     }
