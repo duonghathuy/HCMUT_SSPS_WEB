@@ -1,3 +1,13 @@
+.header .right-side{
+        display: flex;
+        flex-flow: wrap;
+        align-items: center;
+        width: 200px;
+        justify-content: space-around;
+    }
+    .header .right-side .spso-name, .header .right-side .seperator{
+        font-size: 16px;
+    }
 form{
     padding: 40px;
 }
