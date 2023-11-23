@@ -55,9 +55,8 @@
     color: var(--button-background);
 }
 
-.body table .unpaid .payment-btn:hover {
+.body table .unpaid .pay-btn:hover {
     text-decoration: underline;
-    cursor: pointer;
 }
 
 .body table .paied .delete-btn {
@@ -199,7 +198,6 @@
     width: 50%;
     font-size: 16px;
     border-radius: 4px;
-    cursor: pointer;
 }
 
 .popup .popup-content .controls .close-btn {

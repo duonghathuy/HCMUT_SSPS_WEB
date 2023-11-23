@@ -51,13 +51,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dịch vụ sinh viên</title>
+    <title>Mua thêm trang in</title>
 
     
     <!-- custom css file link -->
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="BuyPrintingPages.css" >
 
+    <!-- custom css file link -->
+    <script src="BuyPrintingPages.js"></script>
 </head>
 <body>
     <!-- header section starts -->
@@ -101,7 +103,7 @@
             ?>
         </div>
 
-        <form method="POST" action="" class="registration">
+        <form method="POST" action="" class="registration" onsubmit="return validateInputs()">
             <label for="quantity">Số lượng trang in mua thêm:</label>
             <input type="number" id="quantity" name="quantity" placeholder="Số lượng trang (Khổ A4)" min="1">
             <button type="submit" id="submit-order" name='submit-order' class="submit-order">Đăng ký</button>
@@ -171,9 +173,9 @@
                                 <td>".$row["Quantity"]."</td>
                                 <td class='total-price'>".$total_price."</td>
                                 <td class='payment-status $status'>
-                                    <a href='UpdateBalance.php?Owner_ID=".$row['Order_ID']."' class='pay-btn  payment-btn'>".$payment_status."</a>
+                                    <a href='UpdateBalance.php?Order_ID=".$row['Order_ID']."' class='pay-btn  payment-btn $status' onclick='return confirmPay()'>".$payment_status."</a>
                                     <span>/ </span>
-                                    <a href='DeleteAnOrder.php?Order_ID=".$row['Order_ID']."' class='delete-btn payment-btn'>Xóa</a>
+                                    <a href='DeleteAnOrder.php?Order_ID=".$row['Order_ID']."' class='delete-btn payment-btn' onclick='return confirmDelete()'>Xóa</a>
                                 </td>
                             </tr>";
                         }

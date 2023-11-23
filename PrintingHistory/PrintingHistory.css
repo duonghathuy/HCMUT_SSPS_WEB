@@ -1,0 +1,82 @@
+.body p {
+    font-size: 16px;
+    font-weight: 700;
+    color: #676c70;
+}
+
+.body th {
+    color: #365D7E;
+    font-weight: 700;
+    padding: 10px;
+}
+
+.body table .request-status-th {
+    background-color: #FFCCFF;
+}
+
+.body table .status-btn, .delete-btn {
+    background: rgba(0, 0, 0, 0);
+    font-weight: 700;
+    font-size: 16px;
+    color: #676c70;
+}
+
+.body table .delete-btn, span {
+    display: none;
+}
+
+.body table .saved .delete-btn {
+    display: inline;
+}
+
+.body table .saved span {
+    display: inline;
+}
+
+.body table .saved .status-btn {
+    color: #E61313;
+}
+
+.body table .saved .delete-btn {
+    color: var(--button-background);
+}
+
+.body table .saved .status-btn:hover, .delete-btn:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.body td {
+    color: var(--fontColor);
+    font-weight: 500;
+    padding: 10px;
+}
+
+.body table {
+    font-size: 16px;
+    color: var(--fontColor);
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 27px;
+}
+
+.body table, th, td {
+    border: 1px solid;
+    border-color: var(--fontColor);
+    text-align: center;
+}
+
+.body .registration {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--fontColor);
+    margin-top: 30px;
+}
+
+.body .registration-history {
+    margin-top: 61px;
+}
+
+
+
+

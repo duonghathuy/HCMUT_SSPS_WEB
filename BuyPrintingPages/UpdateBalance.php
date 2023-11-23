@@ -2,7 +2,7 @@
     @include_once("../ConnectDB.php");
 
     //Get Order_ID
-    $Order_ID = $_GET["Owner_ID"];
+    $Order_ID = $_GET["Order_ID"];
 
     // Get Owner_ID and Quantity
     $sql = "SELECT Quantity, Owner_ID
