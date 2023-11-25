@@ -157,9 +157,9 @@
                                         <td>".$total_of_pages."</td>
                                         <td>".$row["Printer_ID"]."</td>
                                         <td class='request-status $status'>
-                                            <a href='SendRequest.php?Request_ID=".$row['Request_ID']."&Total_Of_Pages=".$total_of_pages."' class='status-btn $status' onclick= 'return confirmSend($Balance - $total_of_pages)'>".$request_status."</a>
+                                            <a href='SendARequest.php?Request_ID=".$row['Request_ID']."&Total_Of_Pages=".$total_of_pages."' class='status-btn $status' onclick= 'return confirmSend($Balance - $total_of_pages)'>".$request_status."</a>
                                             <span>/ </span>
-                                            <a href='DeleteAnRequest.php?Request_ID=".$row['Request_ID']."' class='delete-btn' onclick='return confirmDelete()'>Xóa</a>
+                                            <a href='DeleteARequest.php?Request_ID=".$row['Request_ID']."' class='delete-btn' onclick='return confirmDelete()'>Xóa</a>
                                         </td>
                                     </tr>
                                 ";
