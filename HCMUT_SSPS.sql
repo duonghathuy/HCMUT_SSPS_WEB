@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 23, 2023 at 02:13 PM
+-- Generation Time: Nov 27, 2023 at 07:19 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -43,8 +43,8 @@ INSERT INTO `BPP_Order` (`Order_ID`, `Order_Creation_Date`, `Quantity`, `Payment
 (44, '2023-11-09 13:57:32', 12, 1, 1),
 (45, '2023-11-09 13:57:37', 42, 1, 1),
 (63, '2023-11-19 20:22:33', 24, 1, 1),
-(81, '2023-11-23 15:24:27', 4, 1, 1),
-(83, '2023-11-23 20:12:22', 44, 1, 1);
+(110, '2023-11-25 18:02:17', 6, 0, 1),
+(111, '2023-11-25 18:03:52', 5, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -112,7 +112,7 @@ CREATE TABLE `Printing_Request` (
 INSERT INTO `Printing_Request` (`Request_ID`, `Registration_Date`, `Completion_Date`, `File_Name`, `Pages_Per_Sheet`, `Number_Of_Copies`, `Printer_ID`, `Request_Status`, `Owner_ID`) VALUES
 (1, '2023-10-09 07:05:29', '2023-10-09 10:18:02', '03_Ch3 Introduction_2023.pdf', 1, 4, 'Printer1', 'Đã hoàn thành', 1),
 (3, '2023-11-23 07:20:13', NULL, '02_Ch2 Introduction_2023.pdf', 4, 2, 'Printer2', 'Đã gửi', 1),
-(5, '2023-11-23 13:19:51', NULL, '04_Ch4 Introduction_2023.pdf', 2, 1, 'Printer1', 'Đã lưu', 1);
+(9, '2023-11-25 11:39:43', NULL, '01_Ch1 Introduction_2023.pdf', 2, 1, 'Printer2', 'Đã lưu', 1);
 
 -- --------------------------------------------------------
 
@@ -133,9 +133,9 @@ CREATE TABLE `Requested_Page_Numbers` (
 INSERT INTO `Requested_Page_Numbers` (`Request_ID`, `Start_Page_Number`, `End_Page_Number`) VALUES
 (1, 30, 70),
 (3, 1, 102),
-(5, 5, 14),
-(5, 40, 72),
-(5, 80, 100);
+(9, 3, 34),
+(9, 66, 75),
+(9, 80, 115);
 
 -- --------------------------------------------------------
 
@@ -178,7 +178,7 @@ CREATE TABLE `Student` (
 --
 
 INSERT INTO `Student` (`Student_ID`, `Fname`, `Lname`, `Email`, `Role`, `Sex`, `Age`, `Balance`) VALUES
-(1, 'Dương', 'Hà Thuỳ', 'duong.hathuy@hcmut.edu.vn', 'Student', 0, 20, 52);
+(1, 'Dương', 'Hà Thuỳ', 'duong.hathuy@hcmut.edu.vn', 'Student', 0, 20, 50);
 
 --
 -- Indexes for dumped tables
@@ -238,13 +238,13 @@ ALTER TABLE `Student`
 -- AUTO_INCREMENT for table `BPP_Order`
 --
 ALTER TABLE `BPP_Order`
-  MODIFY `Order_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
+  MODIFY `Order_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
 
 --
 -- AUTO_INCREMENT for table `Printing_Request`
 --
 ALTER TABLE `Printing_Request`
-  MODIFY `Request_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `Request_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `Student`
