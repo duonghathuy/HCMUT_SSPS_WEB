@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 27, 2023 at 07:19 AM
+-- Generation Time: Dec 01, 2023 at 08:17 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -112,7 +112,8 @@ CREATE TABLE `Printing_Request` (
 INSERT INTO `Printing_Request` (`Request_ID`, `Registration_Date`, `Completion_Date`, `File_Name`, `Pages_Per_Sheet`, `Number_Of_Copies`, `Printer_ID`, `Request_Status`, `Owner_ID`) VALUES
 (1, '2023-10-09 07:05:29', '2023-10-09 10:18:02', '03_Ch3 Introduction_2023.pdf', 1, 4, 'Printer1', 'Đã hoàn thành', 1),
 (3, '2023-11-23 07:20:13', NULL, '02_Ch2 Introduction_2023.pdf', 4, 2, 'Printer2', 'Đã gửi', 1),
-(9, '2023-11-25 11:39:43', NULL, '01_Ch1 Introduction_2023.pdf', 2, 1, 'Printer2', 'Đã lưu', 1);
+(9, '2023-11-25 11:39:43', NULL, '01_Ch1 Introduction_2023.pdf', 2, 1, 'Printer2', 'Đã lưu', 1),
+(10, '2023-12-01 14:50:51', '2023-12-02 10:18:02', 'LAB 11.odt', 1, 2, 'Printer1', 'Đã hoàn thành', 3);
 
 -- --------------------------------------------------------
 
@@ -135,7 +136,9 @@ INSERT INTO `Requested_Page_Numbers` (`Request_ID`, `Start_Page_Number`, `End_Pa
 (3, 1, 102),
 (9, 3, 34),
 (9, 66, 75),
-(9, 80, 115);
+(9, 80, 115),
+(10, 1, 40),
+(10, 55, 58);
 
 -- --------------------------------------------------------
 
@@ -169,16 +172,17 @@ CREATE TABLE `Student` (
   `Email` text DEFAULT NULL,
   `Role` varchar(50) NOT NULL DEFAULT 'Student',
   `Sex` tinyint(4) DEFAULT NULL,
-  `Age` int(11) DEFAULT NULL,
-  `Balance` int(11) NOT NULL DEFAULT 0
+  `Balance` int(11) NOT NULL DEFAULT 0,
+  `DateOfBirth` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `Student`
 --
 
-INSERT INTO `Student` (`Student_ID`, `Fname`, `Lname`, `Email`, `Role`, `Sex`, `Age`, `Balance`) VALUES
-(1, 'Dương', 'Hà Thuỳ', 'duong.hathuy@hcmut.edu.vn', 'Student', 0, 20, 50);
+INSERT INTO `Student` (`Student_ID`, `Fname`, `Lname`, `Email`, `Role`, `Sex`, `Balance`, `DateOfBirth`) VALUES
+(1, 'Dương', 'Hà Thuỳ', 'duong.hathuy@hcmut.edu.vn', 'Student', 0, 50, '2003-12-13'),
+(3, 'Hoàng', 'Nguyễn Việt', 'hoang.nguyenviet@hcmut.edu.vn', 'Student', 1, 100, '2003-12-14');
 
 --
 -- Indexes for dumped tables
@@ -244,13 +248,13 @@ ALTER TABLE `BPP_Order`
 -- AUTO_INCREMENT for table `Printing_Request`
 --
 ALTER TABLE `Printing_Request`
-  MODIFY `Request_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `Request_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `Student`
 --
 ALTER TABLE `Student`
-  MODIFY `Student_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `Student_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
