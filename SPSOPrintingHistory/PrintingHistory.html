@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nhật kí sử dụng dịch vụ in</title>
+
+    
+    <!-- custom css file link -->
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="PrintingHistory.css" >
+    <link rel="stylesheet" href="MultipleSelectDropdown.css" >
+    <!-- js file link -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="PrintingHistory.js"></script>
+    <script src="MultipleSelectDropdown.js"></script>
+</head>
+<body>
+    <!-- header section starts -->
+    <header id="app-header">
+        <section class="header">
+            <div class="left-side">
+                <div class="logo">
+                    <a href="#">
+                        <img src="../images/logo.png" alt="logo" />
+                        <p>ĐẠI HỌC QUỐC GIA TP.HCM<br>TRƯỜNG ĐẠI HỌC BÁCH KHOA</p>
+                    </a>
+                </div>
+                
+                <div class="menu-bar">
+                    <div class="first-option"><a href="">trang chủ</a></div>
+                    <div class="second-option"><a href="" >dịch vụ của tôi</a></div>
+                </div>
+            </div>
+        
+            <div class="right-side">
+                <div class="username">Username</div>
+                <div class="seperator">|</div>
+                <div>
+                    <a href="#" class="login">Đăng xuất</a>
+                </div>
+            </div>
+        </section>
+    </header>
+    <!-- header section ends -->
+
+
+    <!-- body section starts -->
+
+    <div class="body">
+        <h1 class="title">Nhật kí sử dụng dịch vụ in</h1>
+
+        <div class="filter-container">
+            <div class="some-filters">
+                <p class="label">Mã sinh viên:</p>
+                <div class="custom-select student-select">
+                    <div class="select-box">
+                        <input type="text" class="tags-input" name="tags" hidden/>
+                        <div class="selected-options">
+                            <!-- Selected Options List -->
+                        </div>
+                        <div class="arrow">
+                            <i class="fa fa-angle-down"></i>
+                        </div>
+                    </div>
+                    <div class="options">
+                        <div class="option-search-tags">
+                            <input type="text" class="search-tags" placeholder="Search tags..."/>
+                            <button type="button" class="clear"><i class="fa fa-close"></i></button>
+                        </div>
+                        <div class="option all-tags" data-value="All">Chọn tất cả</div>
+                        <div class="option-list student-list">
+                            <!-- Printers List -->
+                        </div>
+                        <div class="no-result-message" style="display: none;">Không có kết quả phù hợp</div>
+                    </div>
+                </div>
+            </div>
+            <div class="time-period">
+                <p class="label">Khoảng thời gian:</p>
+                <div class="time-period-input">
+                    <input type="datetime-local" step="1" class="start-time">
+                    <p> - </p>
+                    <input type="datetime-local" step="1" class="end-time">
+                </div>
+            </div>
+            <div class="some-filters">
+                <p>Máy in:</p>
+                <div class="custom-select printer-select">
+                    <div class="select-box">
+                        <input type="text" class="tags-input" name="tags" hidden/>
+                        <div class="selected-options">
+                            <!-- Selected Options List -->
+                        </div>
+                        <div class="arrow">
+                            <i class="fa fa-angle-down"></i>
+                        </div>
+                    </div>
+                    <div class="options">
+                        <div class="option-search-tags">
+                            <input type="text" class="search-tags" placeholder="Search tags..."/>
+                            <button type="button" class="clear"><i class="fa fa-close"></i></button>
+                        </div>
+                        <div class="option all-tags" data-value="All">Chọn tất cả</div>
+                        <div class="option-list printer-list">
+                            <!-- Printers List -->
+                        </div>
+                        <div class="no-result-message" style="display: none;">Không có kết quả phù hợp</div>
+                    </div>
+                </div>
+                <button type="button" class="btn-submit">Áp dụng</button>
+            </div>
+            
+        </div>
+
+        <div class="registration-history">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Mã phiếu</th>
+                        <th>Tên sinh viên</th>
+                        <th>MSSV</th>
+                        <th>Ngày đăng ký</th>
+                        <th>Ngày hoàn thành</th>
+                        <th>Tập tin</th>
+                        <th>Các trang cần in</th>
+                        <th>Số trang trên 1 mặt</th>
+                        <th>Số bản in</th>
+                        <th>Tổng số trang</th>
+                        <th>Mã máy in</th>
+                        <th class="request-status-th">Trạng thái</th>
+                    </tr>
+                </thead>
+                <tbody class="request-list">
+                    <!-- Printing Requests List -->
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+
+
+    <!-- body section ends -->
+
+
+    <!-- footer section starts -->
+    <footer id="app-footer">
+        <div class="footer-container">
+            <section class="footer">
+                <div class="box-container">
+                    <div class="box">
+                        <h3>student smart printing service</h3>
+                        <img src="../images/logo.png" alt="logo" />
+                    </div>
+    
+                    <div class="box">
+                        <h3>website</h3>
+                        <a href="https://hcmut.edu.vn/" class="hcmut">HCMUT</a>
+                        <a href="https://mybk.hcmut.edu.vn/my/index.action" class="mybk">MyBK</a>
+                        <a href="https://mybk.hcmut.edu.vn/bksi/public/vi/" class="bksi">BKSI</a>
+                    </div>
+    
+                    <div class="box">
+                        <h3>liên hệ</h3>
+                        <a href="#"> <div class="location-icon"></div>268 Ly Thuong Kiet Street Ward 14, District 10, Ho Chi Minh City, Vietnam </a>
+                        <a href="#"> <div class="phone-icon"></div>(028) 38 651 670 - (028) 38 647 256 (Ext: 5258, 5234) </a>
+                        <a href="mailto:elearning@hcmut.edu.vn" class="email"> <div class="email-icon"></div>elearning@hcmut.edu.vn </a>
+                    </div>
+                </div>
+            </section>
+            <div class="copyright">
+                <p>Copyright 2007-2022 BKEL - Phát triển dựa trên Moodle</p>
+            </div>
+        </div>
+    </footer>
+    <!-- footer section ends -->
+
+</body>
+</html>

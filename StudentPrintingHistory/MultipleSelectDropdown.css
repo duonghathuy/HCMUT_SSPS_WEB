@@ -1,0 +1,156 @@
+.some-printers {
+    display: flex;
+    align-items: flex-start;
+    align-items: center;
+    margin-top: 17px;
+}
+
+.some-printers p {
+    min-width: 173px;
+}
+
+.custom-select {
+    position: relative;
+}
+
+.select-box {
+    border: 1px solid #676c70;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 478px;
+    height: 60.55555725097656px;
+}
+
+.selected-options {
+    display: flex;
+    overflow-x: auto;
+    width: 478px;
+    border-collapse: separate;
+    margin-left: 10px;
+}
+
+.tag {
+    background-color: rgba(0, 0, 0, 0.1);
+    color: #000;
+    border-radius: 4px;
+    padding: 10px 25px 10px 10px;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+    margin: 10px 0;
+    margin-right: 10px;
+    position: relative;
+}
+
+.remove-tag {
+    background-color: transparent;
+    border-radius: 4px;
+    font-size: 20px;
+    cursor: pointer;
+    position: absolute;
+    text-align: center;
+    right: 0px;
+    top: 0px;
+    margin-right: 5px;
+}
+
+.arrow {
+    margin: 0 16px;
+}
+
+.fa-angle-down {
+    color: #676c70;
+    font-size: 30px;
+}
+
+.options {
+    display: none;
+    position: absolute;
+    border: 1px solid #676c70;
+    border-radius: 4px;
+    border-top: none;
+    max-height: 225px;
+    width: 478px;
+    overflow-y: auto;
+    z-index: 1;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    font-size: 16px;
+    color: #000;
+}
+
+.open .options {
+    display: block;
+}
+
+.option-search-tags {
+    border: 1px solid #676c70;
+    border-radius: 4px;
+    padding: 10px;
+    margin: 10px;
+}
+
+.search-tags {
+    width: 100%;
+    font-size: 16px;
+}
+
+.clear {
+    position: absolute;
+    background-color: transparent;
+    cursor: pointer;
+    top: 21px;
+    right: 20px;
+}
+
+.fa-close {
+    color: #676c70;
+    font-size: 20px;
+}
+
+.option {
+    padding: 12.5px 20px;
+    cursor: pointer;
+}
+
+.option.active {
+    color: #000;
+    background-color: #f2f2f2;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.tag:hover, .option:hover {
+    background-color: #eaeaea;
+}
+
+.remove-tag:hover {
+    cursor: pointer;
+}
+
+.no-result-message {
+    padding: 12.5px 20px;
+}
+
+.arrow:hover {
+    cursor: pointer;
+}
+
+.btn-submit {
+    cursor: pointer;
+    background: var(--button-background);
+    padding: 10px;
+    border-radius: 4px;
+    margin-left: 50px;
+    font-weight: 500px;
+    font-size: 16px;
+    color: var(--white);
+}
+
+span.placeholder {
+    font-size: 16px;
+    color: #676c70;
+}

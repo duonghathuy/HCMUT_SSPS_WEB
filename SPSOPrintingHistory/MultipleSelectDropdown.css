@@ -1,11 +1,10 @@
-.some-printers {
+.some-filters {
     display: flex;
-    align-items: flex-start;
     align-items: center;
     margin-top: 17px;
 }
 
-.some-printers p {
+.some-filters p {
     min-width: 173px;
 }
 
@@ -139,7 +138,7 @@
     cursor: pointer;
 }
 
-.btn_submit {
+.btn-submit {
     cursor: pointer;
     background: var(--button-background);
     padding: 10px;
@@ -148,4 +147,10 @@
     font-weight: 500px;
     font-size: 16px;
     color: var(--white);
+    border: none;
+}
+
+span.placeholder {
+    font-size: 16px;
+    color: #676c70;
 }

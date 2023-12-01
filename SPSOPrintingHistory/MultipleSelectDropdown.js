@@ -1,5 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const customSelects = document.querySelectorAll(".custom-select");
+    multipleSelectDropdown(".student-select", "sinh viên");
+    multipleSelectDropdown(".printer-select", "máy in");
+});
+
+function multipleSelectDropdown(className, object) {
+    const customSelects = document.querySelectorAll(className);
 
     function updateSelectedOptions(customSelect) {
         const selectedOptions = Array.from(customSelect.querySelectorAll(".option.active"))
@@ -20,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let tagsHTML = "";
 
         if(selectedOptions.length === 0) {
-            tagsHTML = '<span class="placeholder">Select the tags</span>';
+            tagsHTML = '<span class="placeholder">Chọn danh sách các '+object+'</span>';
         } else {
             selectedOptions.forEach(function(option){
                 tagsHTML += '<span class="tag">'+option.text+'<button class="remove-tag" data-value="'+option.value+'">&times;</button></span>';
@@ -88,10 +93,11 @@ document.addEventListener("DOMContentLoaded", function () {
         })
     });
 
-    document.addEventListener("click", function(event){
+    document.querySelector(className).addEventListener("click", function(event){
         const removeTag = event.target.closest(".remove-tag");
+        
         if(removeTag){
-            const customSelect = removeTag.closest(".custom-select");
+            const customSelect = removeTag.closest(className); console.log(customSelect)
             const valueToRemove = removeTag.getAttribute("data-value");
             const optionToRemove = customSelect.querySelector(".option[data-value='"+valueToRemove+"']");
             optionToRemove.classList.remove("active");
@@ -107,7 +113,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     })
 
-    const selectBoxes = document.querySelectorAll(".select-box");
+    const selectBoxes = document.querySelector(className).querySelectorAll(".select-box");
 
     selectBoxes.forEach(function(selectBox){
         selectBox.addEventListener("click", function(event){
@@ -118,7 +124,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     document.addEventListener("click", function(event){
-        if(!event.target.closest(".custom-select") && !event.target.classList.contains("remove-tag")) {
+        if(!event.target.closest(className) && !event.target.classList.contains("remove-tag")) {
             customSelects.forEach(function(customSelect){
                 customSelect.classList.remove("open");
             })
@@ -137,33 +143,4 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     updateSelectedOptions(customSelects[0]);
-
-    const submitButton = document.querySelector(".btn_submit");
-
-    // submitButton.addEventListener("click", function(){
-    //     let valid = true;
-
-    //     customSelects.forEach(function(customSelect){ console.log(1);
-    //         const selectedOptions = customSelect.querySelectorAll(".option.active");
-
-    //         if(selectedOptions.length === 0) {
-    //             window.alert('Vui lòng chọn máy in mà bạn muốn xem!');
-    //             valid = false;
-    //         }
-    //     });
-
-    //     if(valid) {
-    //         let tags = document.querySelector(".tags-input").value.split(", ");
-
-    //         let timePeriod = Array();
-    //         timePeriod.push(document.querySelector(".start-time").value);
-    //         timePeriod.push(document.querySelector(".end-time").value);
-
-
-    //         console.log(timePeriod);
-    //         resetCustomSelects();
-    //         return;
-    //     }
-    
-    // })
-});
+}

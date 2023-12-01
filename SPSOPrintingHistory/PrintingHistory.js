@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     getRequestList();
+    getStudentList ()
     getPrinterList();
 })
 
@@ -12,11 +13,28 @@ $(document).ready(function() {
         setMaxStartTime();
     });
 
-    document.querySelector(".btn_submit").addEventListener("click", function() {
+    document.querySelector(".btn-submit").addEventListener("click", function() {
         applyFilter();
     })
 });
 
+function getStudentList () {
+    return $.ajax({
+        url: "GetStudentList.php",
+        async: false,
+        success: function (response) {
+            let data = JSON.parse(response);
+            
+            let optionsHTML = "";
+
+            data.forEach(item => {
+                optionsHTML += '<div class="option" data-value="'+item+'">'+item+'</div>';
+            });
+
+            document.querySelector(".student-list").innerHTML = optionsHTML;
+        }
+    });
+};
 
 function getPrinterList () {
     return $.ajax({
@@ -31,7 +49,7 @@ function getPrinterList () {
                 optionsHTML += '<div class="option" data-value="'+item['Printer_ID']+'">'+item['Printer_ID']+'</div>';
             });
 
-            document.querySelector(".option-list").innerHTML = optionsHTML;
+            document.querySelector(".printer-list").innerHTML = optionsHTML;
         }
     });
 };
@@ -55,23 +73,12 @@ function getRequestList() {
                     <td>...</td>
                     <td>...</td>
                     <td>...</td>
+                    <td>...</td>
+                    <td>...</td>
                 </tr>
             `;
 
             data.forEach(item => {
-                let status = 'saved';
-                let Request_Status = 'Gửi in';
-
-                if(item['Request_Status'] == 'Đã gửi') {
-                    status = 'sent';
-                    Request_Status = 'Đã gửi';
-                } else if(item['Request_Status'] == 'Đã hoàn thành') {
-                    status = 'completed';
-                    Request_Status = 'Đã hoàn thành';
-                }
-
-                let isEnoughBalance = item["Balance"] - item["Total_Of_Pages"];
-
                 if(item["Completion_Date"] == null) {
                     item["Completion_Date"] = '...';
                 }
@@ -79,6 +86,8 @@ function getRequestList() {
                 requestsHTML += `
                 <tr>
                     <td>`+item["Request_ID"]+`</td>
+                    <td>`+item["Name"]+`</td>
+                    <td>`+item["Owner_ID"]+`</td>
                     <td>`+item["Registration_Date"]+`</td>
                     <td>`+item["Completion_Date"]+`</td>
                     <td>`+item["File_Name"]+`</td>
@@ -87,11 +96,7 @@ function getRequestList() {
                     <td>`+item["Number_Of_Copies"]+`</td>
                     <td>`+item["Total_Of_Pages"]+`</td>
                     <td>`+item["Printer_ID"]+`</td>
-                    <td class='request-status `+status+`'>
-                        <a href='SendARequest.php?Request_ID=`+item["Request_ID"]+`&Total_Of_Pages=`+item["Total_Of_Pages"]+`' class='status-btn `+status+`' onclick= 'return confirmSend(`+isEnoughBalance+`)'>`+Request_Status+`</a>
-                        <span>/ </span>
-                        <a href='DeleteARequest.php?Request_ID=`+item["Request_ID"]+`' class='delete-btn' onclick='return confirmDelete()'>Xóa</a>
-                    </td>
+                    <td class="status">`+item["Request_Status"]+`</td>
                 </tr>
                 `;
             });
@@ -145,43 +150,42 @@ function setMaxStartTime() {
 }
 
 function applyFilter() {
-    // Validate TimePeriodInput
+    // Get Student Values
+    let filterStudent = document.querySelector(".student-select")
+    const selectedStudents = filterStudent.querySelectorAll(".option.active");
+    let students = filterStudent.querySelector(".tags-input").value.split(", ");
+
+    // Get Time Period Values
     let startTime = document.querySelector(".start-time").value;
     let endTime = document.querySelector(".end-time").value;
-    
-    if(startTime == 0 || endTime == 0) {
-        window.alert('Vui lòng chọn khoảng thời gian mà bạn muốn xem!');
-        return false;
-    }
 
-    // Validate PrinterInput
-    const selectedOptions = document.querySelectorAll(".option.active");
+    // Get Printer Values
+    let filterPrinter = document.querySelector(".printer-select")
+    const selectedPrinters = filterPrinter.querySelectorAll(".option.active");
+    let printers = filterPrinter.querySelector(".tags-input").value.split(", ");
 
-    if(selectedOptions.length === 0) {
-        window.alert('Vui lòng chọn máy in mà bạn muốn xem!');
-        return false;
-    }
-
-    let printers = document.querySelector(".tags-input").value.split(", ");
-
-    // Filter is Validated
-    let trTags = Array.from(document.querySelectorAll("tr"));
+    // 
+    let allRows = document.querySelector(".registration-history")
+    let trTags = Array.from(allRows.querySelectorAll("tr"));
 
     // Reset default filters
     trTags.forEach(function(tr) {
         tr.classList.remove("no-match");
     });
 
-    document.querySelector(".no-request").classList.add("no-match");
-
+    allRows.querySelector(".no-request").classList.add("no-match");
+    
     // Apply filters
-    Array.from(document.querySelectorAll("tr"))
-    .filter(function(tr) {
+    trTags.filter(function(tr) {
         let tdTags = Array.from(tr.querySelectorAll("td"));
 
         if(tdTags.length === 0) return false;
         
-        return !(printers.includes(tdTags[8].innerText) && startTime <= tdTags[1].innerText && tdTags[1].innerText <= endTime); 
+        return !(
+            ((printers == "") ? true : printers.includes(tdTags[10].innerText))
+            && (startTime ? (startTime <= tdTags[3].innerText) : true) && (endTime ? (tdTags[3].innerText <= endTime) : true)
+            && ((students == "") ? true : students.includes(tdTags[1].innerText + ' - ' + tdTags[2].innerText))
+        ); 
     }).forEach(function(tr) {
         tr.classList.add("no-match");
     });
