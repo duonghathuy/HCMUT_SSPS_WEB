@@ -31,7 +31,7 @@ function getPrinterList () {
                 optionsHTML += '<div class="option" data-value="'+item['Printer_ID']+'">'+item['Printer_ID']+'</div>';
             });
 
-            document.querySelector(".option-list").innerHTML = optionsHTML;
+            document.querySelector(".printer-list").innerHTML = optionsHTML;
         }
     });
 };

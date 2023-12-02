@@ -21,7 +21,11 @@
     color: #676c70;
 }
 
-.body table .delete-btn, span {
+.body table .delete-btn {
+    display: none;
+}
+
+.body table span {
     display: none;
 }
 

@@ -23,8 +23,9 @@ function multipleSelectDropdown(className, object) {
 
         let tagsHTML = "";
 
-        if(selectedOptions.length === 0) {
+        if(selectedOptions.length == 0) {
             tagsHTML = '<span class="placeholder">Chọn danh sách các '+object+'</span>';
+            console.log(tagsHTML);
         } else {
             selectedOptions.forEach(function(option){
                 tagsHTML += '<span class="tag">'+option.text+'<button class="remove-tag" data-value="'+option.value+'">&times;</button></span>';
@@ -96,7 +97,7 @@ function multipleSelectDropdown(className, object) {
         const removeTag = event.target.closest(".remove-tag");
         
         if(removeTag){
-            const customSelect = removeTag.closest(className); console.log(customSelect)
+            const customSelect = removeTag.closest(className);
             const valueToRemove = removeTag.getAttribute("data-value");
             const optionToRemove = customSelect.querySelector(".option[data-value='"+valueToRemove+"']");
             optionToRemove.classList.remove("active");

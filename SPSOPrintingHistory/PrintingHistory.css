@@ -93,23 +93,3 @@
 .no-match {
     display: none;
 }
-
-.some-filters {
-    display: flex;
-}
-
-.some-filters {
-    align-items: center;
-}
-
-.some-filters .label {
-    min-width: 173px;
-}
-
-.some-filters input {
-    width: 225px;
-    font-size: 16px;
-    border: 1px solid #676c70;
-    border-radius: 4px;
-    padding: 10px;
-}

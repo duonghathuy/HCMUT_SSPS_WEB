@@ -1,11 +1,10 @@
-.some-printers {
+.some-filters {
     display: flex;
-    align-items: flex-start;
     align-items: center;
     margin-top: 17px;
 }
 
-.some-printers p {
+.some-filters p {
     min-width: 173px;
 }
 
