@@ -3,8 +3,8 @@
 
     // Get Balance of Owner_ID
     $sql = "SELECT Balance
-        FROM Student
-        WHERE Student_ID = 1";
+        FROM Users
+        WHERE ID = '2110103'";
 
     $result = $conn->query($sql);
     $row = $result->fetch_assoc();
@@ -14,7 +14,7 @@
     // Get Printing_Request DB
     $sql = "SELECT Request_ID, Registration_Date, Completion_Date, File_Name, Pages_Per_Sheet, Number_Of_Copies, Printer_ID, Request_Status
             FROM Printing_Request
-            WHERE Owner_ID = 1
+            WHERE Owner_ID = 2110103
             ORDER BY Registration_Date DESC
             ";
 

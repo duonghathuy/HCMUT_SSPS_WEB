@@ -19,8 +19,8 @@
 
     // Get Balance of Owner_ID
     $sql = "SELECT Balance
-            FROM Student
-            WHERE Student_ID = $Owner_ID";
+            FROM Users
+            WHERE ID = $Owner_ID";
 
     $result = $conn->query($sql);
     $row = $result->fetch_assoc();
@@ -37,9 +37,9 @@
     $New_Balance = $Balance - $Total_Of_Pages;
     
     // Update Balance into Student
-    $sql = "UPDATE Student
+    $sql = "UPDATE Users
         SET Balance = $New_Balance
-        WHERE Student_ID = $Owner_ID";
+        WHERE ID = $Owner_ID";
 
     $result = $conn->query($sql);
     

@@ -56,8 +56,8 @@
 
                 // Get Balance
                 $sql = "SELECT Balance 
-                    FROM Student
-                    WHERE Student_ID = 1
+                    FROM Users
+                    WHERE ID = 2110103
                     ";
                 $result = $conn->query($sql);
             
@@ -100,8 +100,7 @@
             // Get Paper_Price
             $sql = "SELECT Paper_Price 
             FROM Configuration
-            WHERE Role = 'Student'
-            ";
+            WHERE Role = 'Student'";
             $result = $conn->query($sql);
 
             $price = 0;
@@ -131,7 +130,7 @@
 
                     $sql = "SELECT Order_ID, Order_Creation_Date, Quantity, Payment_Status, Owner_ID
                             FROM BPP_Order
-                            WHERE Owner_ID = 1
+                            WHERE Owner_ID = '2110103'
                             ORDER BY Order_Creation_Date DESC
                             ";
                     $result = $conn->query($sql);

@@ -15,7 +15,7 @@
     $Quantity = $row["Quantity"];
 
     // Get Old Balance
-    $sql = "SELECT Balance FROM Student WHERE Student_ID = $Owner_ID";
+    $sql = "SELECT Balance FROM Users WHERE ID = $Owner_ID";
     $result = $conn->query($sql);
     $row = $result->fetch_assoc();
 
@@ -25,9 +25,9 @@
     $new_balance = $old_balance + $Quantity;
 
     // Update New Balance into Student Database
-    $sql = "UPDATE Student
+    $sql = "UPDATE Users
             SET Balance = $new_balance
-            WHERE Student_ID = $Owner_ID";
+            WHERE ID = $Owner_ID";
 
     $result = $conn->query($sql);
 

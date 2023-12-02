@@ -58,8 +58,8 @@
 
             // Get Info of Owner
             $info_sql = "SELECT Fname, Lname
-                    FROM Student
-                    WHERE Student_ID = {$row["Owner_ID"]}";
+                    FROM Users
+                    WHERE ID = {$row["Owner_ID"]}";
             $info_result = $conn->query($info_sql);
             $info_row = $info_result->fetch_assoc();
             $name = "{$info_row['Lname']} {$info_row['Fname']}";

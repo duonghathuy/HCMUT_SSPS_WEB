@@ -90,7 +90,7 @@ section {
     width: 200px;
     justify-content: space-around;
 }
-.header .right-side .username, .header .right-side .seperator{
+.header .right-side .username-header, .header .right-side .seperator{
     font-size: 16px;
 }
 

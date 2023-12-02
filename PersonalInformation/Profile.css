@@ -1,0 +1,43 @@
+table {
+    font-size: 16px;
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 27px;
+}
+
+th {
+    color: #365D7E;
+    font-weight: 700;
+    font-size: 16px;
+    text-align: left;
+}
+
+td {
+    color: #000;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+th, td {
+    border: 1px solid #676c70;
+    padding: 10px 20px;
+}
+
+.edit-btn {
+    font-size: 16px;
+    color: #ffffff;
+    font-weight: 500;
+    background-color: #016DCB;
+    padding: 10px 20px;
+    border-radius: 4px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.addresses {
+    padding: 0 20px;
+}
+
+.addresses li {
+    padding: 5px 0;
+}

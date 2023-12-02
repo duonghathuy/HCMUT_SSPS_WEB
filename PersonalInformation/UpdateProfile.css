@@ -1,0 +1,98 @@
+p.title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #676c70;
+    margin-top: 27px;
+}
+
+input {
+    padding: 10px;
+    border: 1px solid #676c70;
+    border-radius: 4px;
+    margin: 10px 0;
+    margin-right: 10px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.insert-btn, .cancel-btn, .update-btn {
+    font-size: 16px;
+    color: #ffffff;
+    font-weight: 500;
+    background-color: #016DCB;
+    padding: 10px 20px;
+    border-radius: 4px;
+    margin-top: 10px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.body p, label {
+    font-size: 16px;
+    font-weight: 700;
+    color: #676c70;
+}
+
+.body th {
+    color: #365D7E;
+    font-weight: 700;
+    padding: 10px;
+}
+
+.body table .request-status-th {
+    background-color: #FFCCFF;
+}
+
+.body table .btn {
+    font-weight: 700;
+    font-size: 16px;
+    color: #676c70;
+}
+
+.body table .delete-btn {
+    color: #E61313;
+}
+
+.body table .edit-btn {
+    color: var(--button-background);
+}
+
+.body table .btn:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.body td {
+    color: var(--fontColor);
+    font-weight: 500;
+    padding: 10px;
+}
+
+.body table {
+    font-size: 16px;
+    color: var(--fontColor);
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 27px;
+}
+
+.body table, th, td {
+    border: 1px solid;
+    border-color: var(--fontColor);
+    text-align: center;
+}
+
+.body .address {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--fontColor);
+    margin-top: 30px;
+}
+
+.update-address {
+    margin-top: 20px;
+}
+
+.display-none {
+    display: none;
+}
