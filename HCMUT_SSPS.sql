@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 02, 2023 at 05:16 AM
+-- Generation Time: Dec 06, 2023 at 02:08 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -20,6 +20,24 @@ SET time_zone = "+00:00";
 --
 -- Database: `HCMUT_SSPS`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Accepted_File_Types`
+--
+
+CREATE TABLE `Accepted_File_Types` (
+  `File_Type` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `Accepted_File_Types`
+--
+
+INSERT INTO `Accepted_File_Types` (`File_Type`) VALUES
+('.jpeg'),
+('.png');
 
 -- --------------------------------------------------------
 
@@ -53,7 +71,7 @@ INSERT INTO `BPP_Order` (`Order_ID`, `Order_Creation_Date`, `Quantity`, `Payment
 --
 
 CREATE TABLE `Configuration` (
-  `Role` varchar(50) NOT NULL,
+  `ID` int(11) NOT NULL,
   `Default_Number_Of_Pages` int(11) NOT NULL,
   `Paper_Price` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -62,8 +80,8 @@ CREATE TABLE `Configuration` (
 -- Dumping data for table `Configuration`
 --
 
-INSERT INTO `Configuration` (`Role`, `Default_Number_Of_Pages`, `Paper_Price`) VALUES
-('Student', 100, 400);
+INSERT INTO `Configuration` (`ID`, `Default_Number_Of_Pages`, `Paper_Price`) VALUES
+(0, 100, 350);
 
 -- --------------------------------------------------------
 
@@ -114,6 +132,23 @@ INSERT INTO `Printing_Request` (`Request_ID`, `Registration_Date`, `Completion_D
 (3, '2023-11-23 07:20:13', NULL, '02_Ch2 Introduction_2023.pdf', 4, 2, 'Printer2', 'Đã gửi', 2110103),
 (9, '2023-11-25 11:39:43', NULL, '01_Ch1 Introduction_2023.pdf', 2, 1, 'Printer2', 'Đã lưu', 2110103),
 (10, '2023-12-01 14:50:51', '2023-12-02 10:18:02', 'LAB 11.odt', 1, 2, 'Printer1', 'Đã hoàn thành', 2110234);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Refill_Dates`
+--
+
+CREATE TABLE `Refill_Dates` (
+  `Refill_Date` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `Refill_Dates`
+--
+
+INSERT INTO `Refill_Dates` (`Refill_Date`) VALUES
+('2023-12-06 20:08:00');
 
 -- --------------------------------------------------------
 
@@ -183,7 +218,7 @@ CREATE TABLE `Users` (
 
 INSERT INTO `Users` (`ID`, `Fname`, `Lname`, `Email`, `Role`, `Sex`, `Balance`, `DateOfBirth`, `Username`) VALUES
 (2110103, 'Dương', 'Hà Thuỳ', 'duong.hathuy@hcmut.edu.vn', 'Student', 0, 100, '2023-02-15', 'duong.hathuy'),
-(2110234, 'Hoàng', 'Nguyễn Việt', 'hoang.nguyenviet@hcmut.edu.vn', 'Student', 1, 50, '2003-05-14', 'hoang.nguyenviet');
+(2110234, 'Hoàng', 'Nguyễn Việt', 'hoang.nguyenviet@hcmut.edu.vn', 'Student', 1, 100, '2003-05-14', 'hoang.nguyenviet');
 
 -- --------------------------------------------------------
 
@@ -214,6 +249,12 @@ INSERT INTO `User_Addresses` (`User_ID`, `Province`, `District`, `Commune`, `Str
 --
 
 --
+-- Indexes for table `Accepted_File_Types`
+--
+ALTER TABLE `Accepted_File_Types`
+  ADD PRIMARY KEY (`File_Type`);
+
+--
 -- Indexes for table `BPP_Order`
 --
 ALTER TABLE `BPP_Order`
@@ -224,7 +265,7 @@ ALTER TABLE `BPP_Order`
 -- Indexes for table `Configuration`
 --
 ALTER TABLE `Configuration`
-  ADD PRIMARY KEY (`Role`);
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexes for table `Printer`
@@ -240,6 +281,12 @@ ALTER TABLE `Printing_Request`
   ADD KEY `Printer_ID` (`Printer_ID`),
   ADD KEY `Request_Status` (`Request_Status`),
   ADD KEY `Owner_ID` (`Owner_ID`);
+
+--
+-- Indexes for table `Refill_Dates`
+--
+ALTER TABLE `Refill_Dates`
+  ADD PRIMARY KEY (`Refill_Date`);
 
 --
 -- Indexes for table `Requested_Page_Numbers`
@@ -303,7 +350,7 @@ ALTER TABLE `BPP_Order`
 ALTER TABLE `Printing_Request`
   ADD CONSTRAINT `printing_request_ibfk_1` FOREIGN KEY (`Printer_ID`) REFERENCES `Printer` (`Printer_ID`),
   ADD CONSTRAINT `printing_request_ibfk_2` FOREIGN KEY (`Request_Status`) REFERENCES `Request_Status` (`Request_Status`),
-  ADD CONSTRAINT `printing_request_ibfk_3` FOREIGN KEY (`Owner_ID`) REFERENCES `users` (`ID`);
+  ADD CONSTRAINT `printing_request_ibfk_3` FOREIGN KEY (`Owner_ID`) REFERENCES `Student` (`ID`);
 
 --
 -- Constraints for table `User_Addresses`

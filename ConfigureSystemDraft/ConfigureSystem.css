@@ -1,0 +1,138 @@
+.body form .default-number-of-pages, .refill-date-container, .accepted-file-type-container, .paper-price-container {
+    margin-top: 27px;
+    color: #676C70;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.body form .default-number-of-pages label {
+    margin-right: 75px;
+}
+
+.body form .default-number-of-pages input, .paper-price-container input {
+    border-radius: 4px;
+    border-radius: 4px;
+    border: 1px solid #676C70;
+    width: 225px;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-weight: 700;
+}
+
+.body form .paper-price-container label {
+    margin-right: 110px;
+}
+
+.body form input::placeholder {
+    color: rgba(0, 0, 0, 0.25);
+    text-align: center;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.body form .refill-date-container label {
+    margin-right: 52px;
+}
+
+.body form .refill-date-container input {
+    margin-right: 44px;
+}
+
+.body form input {
+    border-radius: 4px;
+    border: 1px solid #676C70;
+    width: 225px;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    text-align: center;
+    font-size: 16px;
+}
+
+.body form .accepted-file-type-container label {
+    margin-right: 25px;
+}
+
+.body form .accepted-file-type-container input {
+    margin-right: 44px;
+}
+
+.body form .accepted-file-type-container button, .save-btn, button.add-refill-date {
+    border-radius: 4px;
+    background: #428ACA;
+    color: #fff;
+    padding: 10px;
+    font-weight: 500;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    cursor: pointer;
+    min-width: 64px;
+}
+
+.body form .accepted-file-type-list, .refill-date-list {
+    width: 580px;
+    max-width: 100%;
+    min-height: 90.66667175292969px;
+    grid-template-columns: repeat(auto-fill, 580px);
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #676C70;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 27px;
+}
+
+.body form .file-type-item, .refill-date-item {
+    border-radius: 4px;
+    background: rgba(0, 0, 0, 0.10);
+    position: relative;
+    margin: 10px;
+    display: inline-block;
+}
+
+.body form .file-type-item>p, .refill-date-item>p {
+    color: #676C70;
+    text-align: center;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    padding: 15px;
+}
+
+.body form .delete-btn {
+    background-color: transparent;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    position: absolute;
+    text-align: center;
+    right: 0px;
+    bottom: 33px;
+    padding: 0 2px;
+}
+
+.body form .delete-btn:hover {
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+.body form .save-btn {
+    margin-top: 27px;
+}
+
+.body form input:focus {
+    background-color: rgba(0, 0, 0, 0.1);
+}

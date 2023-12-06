@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cấu hình hệ thống</title>
+
+    <!-- custom css file link -->
+    <link rel="stylesheet" type="text/css" href="../style.css" >
+    <link rel="stylesheet" type="text/css" href="ConfigureSystem.css" >
+
+    <!-- js file link -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="ConfigureSystem.js"></script>
+</head>
+<body>
+    <!-- header section starts -->
+
+    <section class="header">
+        <div class="left-side">
+            <div class="logo">
+                <a href="#">
+                    <img src="../images/logo.png" alt="logo" />
+                    <p>ĐẠI HỌC QUỐC GIA TP.HCM<br>TRƯỜNG ĐẠI HỌC BÁCH KHOA</p>
+                </a>
+            </div>
+
+            <div class="menu-bar">
+                <div class="first-option"><a href="">trang chủ</a></div>
+                <div class="second-option"><a href="" >dịch vụ của tôi</a></div>
+            </div>
+        </div>
+        
+        <div class="right-side">
+            <div class="username">Username</div>
+            <div class="seperator">|</div>
+            <div>
+                <a href="#" class="login">Đăng xuất</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- header section ends -->
+
+
+
+
+    <!-- body section starts -->
+
+    <div class="body">
+        <h1 class="title">cấu hình hệ thống</h1>
+        <form class="configure-system-form">
+            <div class="default-number-of-pages input-control">
+                <label for="number-of-pages">Số trang in mặc định:</label>
+                <input type="number" id="number-of-pages" name="number-of-pages" placeholder="Số lượng trang (Khổ A4)" min="0">
+            </div>
+
+            <div class="paper-price-container input-control">
+                <label for="paper-price">Giá một trang in:</label>
+                <input type="number" id="paper-price" name="paper-price" placeholder="Giá một trang (Khổ A4)" min="0">
+            </div>
+
+            <div class="refill-date-container">
+                <label for="refill-date">Ngày cung cấp trang in :</label>
+                <input type="datetime-local" step="1" id="refill-date" name="refill-date">
+                <button type="button" class="add-refill-date">Thêm</button>
+            </div>
+
+            <div class="refill-date-list">
+                <div class='refill-date-item'>
+                    <button type='button' class='delete-btn delete-refill-date' value='2023-12-06 14:07:31'>&times;</button>
+                    <p>2023-12-06 14:07:31</p>
+                </div>  
+            </div>
+
+            <div class="accepted-file-type-container">
+                <label for="file-type">Định dạng tập tin cho phép:</label>
+                <input type="text" id="file-type" placeholder="Định dạng tập tin">
+                <button type="button" class="add-file-type">Thêm</button>
+            </div>
+
+            <div class="accepted-file-type-list">
+                <div class='file-type-item'>
+                    <button type='button' class='delete-btn delete-file-type' value='.pdf'>&times;</button>
+                    <p>.pdf</p>
+                </div>  
+            </div>
+
+            <button type="submit" name="submit-configuration" class="save-btn">Lưu</button>
+        </form>
+    </div>
+
+    <!-- body section ends -->
+
+
+
+
+    <!-- footer section starts -->
+    <div class="footer-container">
+        <section class="footer">
+            <div class="box-container">
+                <div class="box">
+                    <h3>student smart printing service</h3>
+                    <img src="../images/logo.png" alt="logo" />
+                </div>
+
+                <div class="box">
+                    <h3>website</h3>
+                    <a href="https://hcmut.edu.vn/" class="hcmut">HCMUT</a>
+                    <a href="https://mybk.hcmut.edu.vn/my/index.action" class="mybk">MyBK</a>
+                    <a href="https://mybk.hcmut.edu.vn/bksi/public/vi/" class="bksi">BKSI</a>
+                </div>
+
+                <div class="box">
+                    <h3>liên hệ</h3>
+                    <a href="#"> <div class="location-icon"></div>268 Ly Thuong Kiet Street Ward 14, District 10, Ho Chi Minh City, Vietnam </a>
+                    <a href="#"> <div class="phone-icon"></div>(028) 38 651 670 - (028) 38 647 256 (Ext: 5258, 5234) </a>
+                    <a href="mailto:elearning@hcmut.edu.vn" class="email"> <div class="email-icon"></div>elearning@hcmut.edu.vn </a>
+                </div>
+            </div>
+        </section>
+        <div class="copyright">
+            <p>Copyright 2007-2022 BKEL - Phát triển dựa trên Moodle</p>
+        </div>
+    </div>
+    <!-- footer section ends -->
+
+
+
+
+
+
+
+
+
+</body>
+</html>
