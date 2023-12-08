@@ -25,7 +25,7 @@
                     $_SESSION["username"] = $username;
                     $_SESSION["id"] = $row["ID"];
                     $_SESSION["role"] = $row["Role"];
-                    header("Location: ../UserHome/UserHome.html");
+                    header("Location: ../UserHome/UserHome.php");
                     $error .= "Đăng nhập thành công.";
                 } 
                 else {

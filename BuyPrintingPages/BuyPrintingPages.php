@@ -1,3 +1,11 @@
+<?php
+    session_start();
+
+    $ID = $_SESSION['id'];
+    $Username = $_SESSION['username'];
+    $Role = $_SESSION['role'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -57,7 +65,7 @@
                 // Get Balance
                 $sql = "SELECT Balance 
                     FROM Users
-                    WHERE ID = 2110103
+                    WHERE ID = '$ID'
                     ";
                 $result = $conn->query($sql);
             
@@ -100,7 +108,7 @@
             // Get Paper_Price
             $sql = "SELECT Paper_Price 
             FROM Configuration
-            WHERE Role = 'Student'";
+            ";
             $result = $conn->query($sql);
 
             $price = 0;
@@ -130,7 +138,7 @@
 
                     $sql = "SELECT Order_ID, Order_Creation_Date, Quantity, Payment_Status, Owner_ID
                             FROM BPP_Order
-                            WHERE Owner_ID = '2110103'
+                            WHERE Owner_ID = '$ID'
                             ORDER BY Order_Creation_Date DESC
                             ";
                     $result = $conn->query($sql);

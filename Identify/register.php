@@ -123,11 +123,11 @@
             <form action = "" method  = "POST">
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id = "fname" name = "fname" placeholder="name@example.com">
-                    <label for="floatingInput">Họ</label>
+                    <label for="floatingInput">Họ & Tên đệm</label>
                 </div>        
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id = "lname" name = "lname" placeholder="name@example.com">
-                    <label for="floatingInput">Tên lót và tên</label>
+                    <label for="floatingInput">Tên</label>
                 </div>
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id = "email" name = "email" placeholder="name@example.com">
@@ -138,9 +138,9 @@
                     <option value="1">Nam</option>
                     <option value="0">Nữ</option>
                 </select>
-                <div class="mb-3">
-                    <label for="floatingdob" class="form-label">Ngày sinh</label>
+                <div class="form-floating mb-3">
                     <input type="date" class="form-control" id="floatingdob" name="dob" value = "Ngày tháng năm sinh">
+                    <label for="floatingdob" class="form-label">Ngày sinh</label>
                 </div>
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id = "floatingusername" name = "username" placeholder="name@example.com">

@@ -1,3 +1,9 @@
+<script>
+    localStorage.removeItem("ID");
+    localStorage.removeItem("Username");
+    localStorage.removeItem("Role");
+</script>
+
 <?php
     session_start(); // Start the session
 
@@ -15,3 +21,4 @@
     }
     header("Location: ../userHome/userHome.html"); 
 ?>
+

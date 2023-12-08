@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -89,3 +93,9 @@
     <!-- footer section ends -->
 </body>
 </html>
+
+<script>
+    localStorage.setItem("ID", <?php echo $_SESSION['id']; ?>)
+    localStorage.setItem("Username", <?php echo "\"".$_SESSION['username']."\""; ?>)
+    localStorage.setItem("Role", <?php echo "\"".$_SESSION['role']."\""; ?>)
+</script>
