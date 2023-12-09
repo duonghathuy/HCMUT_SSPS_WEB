@@ -131,7 +131,7 @@ CREATE TABLE `Printer` (
 --
 -- Đang đổ dữ liệu cho bảng `Printer`
 --
-insert into `printer_list` (`Printer_ID`, `Printer_name`, `Printer_desc`, `Printer_avai`, `Printer_campusloc`, `Printer_buildingloc`,  `Printer_room`)
+insert into `Printer` (`Printer_ID`, `Printer_name`, `Printer_desc`, `Printer_avai`, `Printer_campusloc`, `Printer_buildingloc`,  `Printer_room`)
 VALUES 
 ('2H11031', 'Canon 1', 'Lorem Ipsum', 'Y', '2', 'H1', '103'),
 ('1A21011', 'Canon 1', 'Lorem Ipsum', 'Y', '1', 'A2', '101'),
@@ -407,7 +407,7 @@ ALTER TABLE `User_Addresses`
   ADD CONSTRAINT `user_addresses_ibfk_1` FOREIGN KEY (`User_ID`) REFERENCES `Users` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
-ALTER TABLE `printer_list`  
+ALTER TABLE `Printer`
   ADD CONSTRAINT `printer_list_campus_building_ibfk_1` FOREIGN KEY (`printer_campusloc`, `printer_buildingloc`) REFERENCES `campus_building`(`printer_campusloc`, `printer_buildingloc`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
