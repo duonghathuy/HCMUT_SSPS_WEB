@@ -79,6 +79,10 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: var(--white);
+  margin: 17px 10%;
+  padding: 16px;
+  min-height: 582px;
 }
 
 .footer {

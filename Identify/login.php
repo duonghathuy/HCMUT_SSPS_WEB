@@ -105,6 +105,14 @@
             height: 50px;
             margin-bottom: 40px;
         }
+        @media screen and (max-width: 768px) {
+            .container{
+                width: 100%;
+            }
+            .loginForm{
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
