@@ -24,7 +24,7 @@ function getProfile(id) {
             document.querySelector(".id").innerHTML = data['id'];
             document.querySelector(".name").innerHTML = data['lname'] +' '+ data['fname'];
             document.querySelector(".birthday").innerHTML = data['birthday'];
-            document.querySelector(".sex").innerHTML = data['sex'] ? 'Nam' : 'Nữ';
+            document.querySelector(".sex").innerHTML = data['sex'] ? 'Nữ' : 'Nam';
             document.querySelector(".role").innerHTML = (data['role'] == 'Student') ? 'Sinh viên' : 'Quản lý';
             document.querySelector(".username").innerHTML = data['username'];
             document.querySelector(".mail").innerHTML = data['email'];

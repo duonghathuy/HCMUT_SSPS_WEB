@@ -4,19 +4,22 @@ document.addEventListener("DOMContentLoaded", function() {
     getAddressesList(id);
 
     document.querySelectorAll(".insert-btn").forEach(function(btn) {
-        btn.addEventListener("click", function() {
+        btn.addEventListener("click", function(e) {
+            e.preventDefault();
             insertAddress(id);
         })
     })
 
     document.querySelectorAll(".delete-btn").forEach(function(btn) {
-        btn.addEventListener("click", function() {
+        btn.addEventListener("click", function(e) {
+            e.preventDefault();
             deleteAddress(id, btn.getAttribute("value"));
         })
     })
 
     document.querySelectorAll(".edit-btn").forEach(function(btn) {
-        btn.addEventListener("click", function() {
+        btn.addEventListener("click", function(e) {
+            e.preventDefault();
             updateAddress(id, btn.getAttribute("value"));
         })
     })

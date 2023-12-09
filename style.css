@@ -95,7 +95,7 @@ section {
     font-size: 16px;
     color: #676c70;
     font-weight: 600;
-    text-transform: capitalize;
+    text-transform: uppercase;
 }
 
 .header .right-side .seperator {

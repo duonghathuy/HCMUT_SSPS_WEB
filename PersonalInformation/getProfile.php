@@ -23,6 +23,8 @@
         }
     }
 
+
+    // Get info of user
     $sql = "SELECT *
             FROM `Users`
             WHERE ID = $id";

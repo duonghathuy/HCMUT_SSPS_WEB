@@ -37,7 +37,7 @@
                 <a href="#" class = "username-header"></a>
                 <div class="seperator">|</div>
                 <div>
-                    <a href="../Identify/logout.php" class="login">Đăng xuất</a>
+                    <a href="../Identify/logout.php" class="logout">Đăng xuất</a>
                 </div>
             </div>
         </section>

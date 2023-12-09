@@ -9,4 +9,6 @@ document.addEventListener("DOMContentLoaded", function() {
     document.querySelector(".header .left-side .logo a").href = "../UserHome/UserHome.php";
     document.querySelector(".header .left-side .menu-bar .first-option a").href = "../UserHome/UserHome.php";
     document.querySelector(".header .left-side .menu-bar .second-option a").href = href;
+    document.querySelector(".header .right-side .logout").href = "../Identify/logout.php";
+    document.querySelector(".header .right-side .username-header").href = "../PersonalInformation/Profile.html";
 })
