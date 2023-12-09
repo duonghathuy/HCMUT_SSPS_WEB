@@ -1,28 +1,26 @@
 function ValidateConfiguration(){
     let numberOfPagesInput = document.querySelector("input[name='numberOfPages']");
     let numberOfPages = Number(numberOfPagesInput.value);
+    let paperPriceInput = document.querySelector("input[name='paperPrices']")
+    let paperPrice = Number(paperPriceInput.value);
     if ((Number.isInteger(numberOfPages) == false) || (numberOfPages < 0)){
         numberOfPagesInput.focus();
         window.alert("Số trang phải là số nguyên dương\n");
         return false;
     }
-    window.alert("Cập nhật thành công\n");
+    if ((Number.isInteger(paperPrice) == false) || (paperPrice < 0)){
+        paperPriceInput.focus();
+        window.alert("Giá tiền phải là số nguyên dương\n");
+        return false;
+    }
+    return true;
 }
 function AddExtension(){
     var extension = document.querySelector("input[name='extension']");
     if (IsExtensionValid(extension) == false){
-        return;
+        return false;
     }
-    extension.value = "";
-    window.alert("Thêm định dạng thành công\n");
-}
-function RemoveExtension(){
-    var extension = document.querySelector("input[name='extension']");
-    if (IsExtensionValid(extension) == false){
-        return;
-    }
-    extension.value = "";
-    window.alert("Xóa định dạng thành công\n");
+    return true;
 }
 function IsExtensionValid(extension){
     if (extension.value == ""){

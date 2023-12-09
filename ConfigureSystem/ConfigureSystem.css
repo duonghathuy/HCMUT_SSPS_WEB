@@ -22,7 +22,7 @@ form>div{
     width: 40%;
 }
 form>div.supply-date{
-    width: 70%;
+    width: 50%;
 }
 form input{
     border: 1px solid black;
@@ -76,12 +76,25 @@ form>div.supply-date>input:focus{
     border-spacing: 10px;
 }
 .permitted-file-type td{
+    position: relative;
     border: 1px solid black;
     font-weight: bold;
     border-radius: 5px;
-    padding: 10px;
-    background-color: rgb(184,193,202,255);;
+    padding:1em;
+    background-color: rgb(184,193,202,255);
 }
+.permitted-file-type button{
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    cursor: pointer;
+    background-color: rgb(184,193,202,255);
+    font-weight: bolder;
+}
+.permitted-file-type button:hover{
+    background-color: white;
+}
+
 form>.submit-button>button{
     background-color: rgb(66,138,202,255);
     height: 3em;
@@ -96,4 +109,35 @@ form>.submit-button>button:hover{
 }
 form>.submit-button>button:active{
     opacity: 50%;
+}
+
+.supply-date-list{
+    overflow-x: auto;
+    width: 50%;
+    border: 1px solid black;
+    border-radius: 5px;
+    white-space: nowrap;
+}
+.supply-date-list table{
+    border-collapse: separate;
+    border-spacing: 10px;
+}
+.supply-date-list td{
+    position: relative;
+    border: 1px solid black;
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 1em;
+    background-color: rgb(184,193,202,255);
+}
+.supply-date-list button{
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    cursor: pointer;
+    background-color: rgb(184,193,202,255);
+    font-weight: bolder;
+}
+.supply-date-list button:hover{
+    background-color: white;
 }

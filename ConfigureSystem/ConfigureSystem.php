@@ -1,3 +1,15 @@
+<?php
+    if (isset($_SESSION) == false){
+        session_start();
+    }
+    include_once "GetConfiguration.php";
+?>  
+<?php if (isset($_SESSION['update'])){ ?>
+    <script>window.alert("Cập nhật thành công");</script>
+    <?php
+        unset($_SESSION['update']);
+    ?>
+<?php } ?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -8,6 +20,7 @@
         <link rel="stylesheet" href="../style.css">
         <link rel="stylesheet" href="ConfigureSystem.css">
         <script src="ConfigureValidation.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     </head>
     <body>
         <!-- header section starts -->
@@ -43,38 +56,32 @@
 
         <div class="body">
             <h1 class="title">Cấu hình hệ thống</h1>
-            <form name="configure-system" onsubmit="return ValidateConfiguration()">
+            <form name="configure-system" method="post" action="UpdateConfiguration.php" onsubmit="return ValidateConfiguration()">
                 <div>
-                    Số giấy in mặc định: <input type="number" name="numberOfPages" placeholder="100" min="0">
+                    Số giấy in mặc định: <input type="number" name="numberOfPages" placeholder="<?= $configurationData['Default_Number_Of_Pages'] ?>" min="0">
+                </div>
+                <div>
+                    Giá một trang in: <input type="number" name="paperPrices" placeholder="<?= $configurationData['Paper_Price'] ?>" min="0">
                 </div>
                 <div class="supply-date">
                     Thời điểm cung cấp giấy in:
-                    <input type="time" name="supplyTime" value="00:00">
-                    <input type="date" name="supplyDate" value="2023-01-16">
+                    <input type="datetime-local" name="supplyDate">
+                    <div class="extension-setting-button">
+                        <button type="button" onclick="AddDate()">Thêm</button>
+                    </div>
+                </div>
+                <div class="supply-date-list">
+                    
                 </div>
                 <div class="file-extension">
                     Định dạng tập tin cho phép:
                     <input type="text" name="extension" placeholder="Điền tên định dạng cần thêm hoặc xóa">
                     <div class="extension-setting-button">
-                        <button type="button" onclick="AddExtension()">Thêm</button>
-                        <button type="button" onclick="RemoveExtension()">Xóa</button>
+                        <button type="button" onclick="if (AddExtension()){AddFile();}">Thêm</button>
                     </div>
                 </div>
                 <div class="permitted-file-type">
-                    <table>
-                        <tr>
-                            <td>.docx</td>
-                            <td>.doc</td>
-                            <td>.pdf</td>
-                            <td>.odt</td>
-                            <td>.xls</td>
-                            <td>.xlsx</td>
-                            <td>.png</td>
-                            <td>.jpg</td>
-                            <td>.GIF</td>
-                            <td>.AI</td>
-                        </tr>
-                    </table>
+                    
                 </div>
                 <div class="submit-button">
                     <button type="submit">Lưu</button>
@@ -117,5 +124,6 @@
             </div>
         </footer>
         <!-- footer section ends -->
+        <script src="AjaxFunction.js"></script>
     </body>
 </html>
