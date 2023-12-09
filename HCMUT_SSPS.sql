@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: localhost
--- Thời gian đã tạo: Th12 08, 2023 lúc 09:05 PM
+-- Thời gian đã tạo: Th12 09, 2023 lúc 08:04 AM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.2.4
 
@@ -49,6 +49,7 @@ CREATE TABLE `BPP_Order` (
   `Order_ID` int(11) NOT NULL,
   `Order_Creation_Date` datetime NOT NULL,
   `Quantity` int(11) NOT NULL,
+  `Total_Price` int(11) NOT NULL DEFAULT 0,
   `Payment_Status` tinyint(4) NOT NULL,
   `Owner_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -57,12 +58,9 @@ CREATE TABLE `BPP_Order` (
 -- Đang đổ dữ liệu cho bảng `BPP_Order`
 --
 
-INSERT INTO `BPP_Order` (`Order_ID`, `Order_Creation_Date`, `Quantity`, `Payment_Status`, `Owner_ID`) VALUES
-(44, '2023-11-09 13:57:32', 12, 1, 2110103),
-(45, '2023-11-09 13:57:37', 42, 1, 2110103),
-(63, '2023-11-19 20:22:33', 24, 1, 2110103),
-(110, '2023-11-25 18:02:17', 6, 0, 2110103),
-(111, '2023-11-25 18:03:52', 5, 0, 2110103);
+INSERT INTO `BPP_Order` (`Order_ID`, `Order_Creation_Date`, `Quantity`, `Total_Price`, `Payment_Status`, `Owner_ID`) VALUES
+(117, '2023-12-09 14:01:30', 12, 4200, 1, 2110234),
+(118, '2023-12-09 14:01:43', 20, 7000, 0, 2110234);
 
 -- --------------------------------------------------------
 
@@ -218,8 +216,8 @@ CREATE TABLE `Users` (
 --
 
 INSERT INTO `Users` (`ID`, `Fname`, `Lname`, `Password`, `Email`, `Role`, `Sex`, `Balance`, `DateOfBirth`, `Username`) VALUES
-(2110103, 'Dương', 'Hà Thuỳ', '$2y$10$.9QnFRwy8qmuKzJ6ZxToW.P1PPCXyrgU4Lqj67kMGB/iLykjEn7E2', 'duong.hathuy@hcmut.edu.vn', 'Student', 0, 100, '2023-02-15', 'duong.hathuy'),
-(2110234, 'Hoàng', 'Nguyễn Việt', '$2y$10$.9QnFRwy8qmuKzJ6ZxToW.P1PPCXyrgU4Lqj67kMGB/iLykjEn7E2', 'hoang.nguyenviet@hcmut.edu.vn', 'Student', 1, 100, '2003-05-14', 'hoang.nguyenviet');
+(2110104, 'Dương', 'Hà Thuỳ', '$2y$10$.9QnFRwy8qmuKzJ6ZxToW.P1PPCXyrgU4Lqj67kMGB/iLykjEn7E2', 'duong.hathuy@hcmut.edu.vn', 'Student', 0, 79, '2023-02-15', 'duong.hathuy'),
+(2110234, 'Hoàng', 'Nguyễn Việt', '$2y$10$.9QnFRwy8qmuKzJ6ZxToW.P1PPCXyrgU4Lqj67kMGB/iLykjEn7E2', 'hoang.nguyenviet@hcmut.edu.vn', 'Student', 1, 124, '2003-05-14', 'hoang.nguyenviet');
 
 -- --------------------------------------------------------
 
@@ -240,9 +238,9 @@ CREATE TABLE `User_Addresses` (
 --
 
 INSERT INTO `User_Addresses` (`User_ID`, `Province`, `District`, `Commune`, `Street`) VALUES
-(2110103, 'Thành Phố Hồ Chí Minh', 'Quận 3', 'Phường 7', '280 Điện Biên Phủ'),
-(2110103, 'Thành Phố Hồ Chí Minh', 'Quận 3', 'Phường 7', '58 Bà Huyện Thanh Quan'),
-(2110103, 'Tỉnh Long An', 'Huyện Cần Giuộc', 'Xã Thuận Thành', '88 Thuận Tây'),
+(2110104, 'Thành Phố Hồ Chí Minh', 'Quận 3', 'Phường 7', '280 Điện Biên Phủ'),
+(2110104, 'Thành Phố Hồ Chí Minh', 'Quận 3', 'Phường 7', '58 Bà Huyện Thanh Quan'),
+(2110104, 'Tỉnh Long An', 'Huyện Cần Giuộc', 'Xã Thuận Thành', '88 Thuận Tây'),
 (2110234, 'Thành Phố Hồ Chí Minh', 'Quận 7', 'Phường Bình Thuận', '3 Lâm Văn Bền');
 
 --
@@ -321,7 +319,7 @@ ALTER TABLE `User_Addresses`
 -- AUTO_INCREMENT cho bảng `BPP_Order`
 --
 ALTER TABLE `BPP_Order`
-  MODIFY `Order_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
+  MODIFY `Order_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=119;
 
 --
 -- AUTO_INCREMENT cho bảng `Printing_Request`
@@ -343,7 +341,7 @@ ALTER TABLE `Users`
 -- Các ràng buộc cho bảng `BPP_Order`
 --
 ALTER TABLE `BPP_Order`
-  ADD CONSTRAINT `bpp_order_ibfk_1` FOREIGN KEY (`Owner_ID`) REFERENCES `users` (`ID`);
+  ADD CONSTRAINT `bpp_order_ibfk_1` FOREIGN KEY (`Owner_ID`) REFERENCES `Users` (`ID`) ON UPDATE CASCADE;
 
 --
 -- Các ràng buộc cho bảng `Printing_Request`
@@ -357,7 +355,7 @@ ALTER TABLE `Printing_Request`
 -- Các ràng buộc cho bảng `User_Addresses`
 --
 ALTER TABLE `User_Addresses`
-  ADD CONSTRAINT `user_addresses_ibfk_1` FOREIGN KEY (`User_ID`) REFERENCES `Users` (`ID`);
+  ADD CONSTRAINT `user_addresses_ibfk_1` FOREIGN KEY (`User_ID`) REFERENCES `Users` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
