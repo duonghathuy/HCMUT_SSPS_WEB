@@ -73,7 +73,7 @@ section {
     width: 55px;
 }
 
-.header .right-side .login{
+.header .right-side .login, .logout{
     font-size: 16px;
     color: #106BBF;
 }
@@ -87,11 +87,19 @@ section {
     display: flex;
     flex-flow: wrap;
     align-items: center;
-    width: 200px;
+    min-width: 200px;
     justify-content: space-around;
 }
+
 .header .right-side .username-header, .header .right-side .seperator{
     font-size: 16px;
+    color: #676c70;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.header .right-side .username-header:hover {
+    text-decoration: underline;
 }
 
 .header .left-side .menu-bar {

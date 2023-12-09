@@ -12,6 +12,7 @@
     <!-- custom css file link -->
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" type="text/css" href="UserHome.css" >
+    <script src="../SetUsernameOnHeader.js"></script>
 
 </head>
 <body>

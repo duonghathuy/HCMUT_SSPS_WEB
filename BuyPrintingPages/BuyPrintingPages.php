@@ -21,6 +21,7 @@
 
     <!-- custom css file link -->
     <script src="BuyPrintingPages.js"></script>
+    <script src="../SetUsernameOnHeader.js"></script>
 </head>
 <body>
     <!-- header section starts -->
@@ -41,7 +42,7 @@
             </div>
         
             <div class="right-side">
-                <div class="username">Username</div>
+                <a href="" class="username-header">Username</a>
                 <div class="seperator">|</div>
                 <div>
                     <a href="#" class="login">Đăng xuất</a>
