@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Dec 09, 2023 at 10:00 AM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Máy chủ: localhost
+-- Thời gian đã tạo: Th12 09, 2023 lúc 10:37 AM
+-- Phiên bản máy phục vụ: 10.4.28-MariaDB
+-- Phiên bản PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `hcmut_ssps`
+-- Cơ sở dữ liệu: `HCMUT_SSPS`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `accepted_file_types`
+-- Cấu trúc bảng cho bảng `Accepted_File_Types`
 --
 
 CREATE TABLE `accepted_file_types` (
@@ -39,36 +39,62 @@ INSERT INTO `accepted_file_types` (`File_Type`) VALUES
 ('.docx'),
 ('.jpg'),
 ('.pdf');
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `bpp_order`
+-- Cấu trúc bảng cho bảng `BPP_Order`
 --
 
-CREATE TABLE `bpp_order` (
+CREATE TABLE `BPP_Order` (
   `Order_ID` int(11) NOT NULL,
   `Order_Creation_Date` datetime NOT NULL,
   `Quantity` int(11) NOT NULL,
+  `Total_Price` int(11) NOT NULL DEFAULT 0,
   `Payment_Status` tinyint(4) NOT NULL,
   `Owner_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `bpp_order`
+-- Đang đổ dữ liệu cho bảng `BPP_Order`
 --
 
-INSERT INTO `bpp_order` (`Order_ID`, `Order_Creation_Date`, `Quantity`, `Payment_Status`, `Owner_ID`) VALUES
-(44, '2023-11-09 13:57:32', 12, 1, 2110103),
-(45, '2023-11-09 13:57:37', 42, 1, 2110103),
-(63, '2023-11-19 20:22:33', 24, 1, 2110103),
-(110, '2023-11-25 18:02:17', 6, 0, 2110103),
-(111, '2023-11-25 18:03:52', 5, 0, 2110103);
+INSERT INTO `BPP_Order` (`Order_ID`, `Order_Creation_Date`, `Quantity`, `Total_Price`, `Payment_Status`, `Owner_ID`) VALUES
+(117, '2023-12-09 14:01:30', 12, 4200, 1, 2110234),
+(118, '2023-12-09 14:01:43', 20, 7000, 0, 2110234),
+(119, '2023-12-09 14:10:37', 1, 350, 0, 2110104);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `configuration`
+-- Cấu trúc bảng cho bảng `campus_building`
+--
+
+CREATE TABLE `campus_building` (
+  `printer_campusloc` char(1) DEFAULT NULL CHECK (`printer_campusloc` in ('1','2')),
+  `printer_buildingloc` char(2) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `campus_building`
+--
+
+INSERT INTO `campus_building` (`printer_campusloc`, `printer_buildingloc`) VALUES
+('1', 'A2'),
+('1', 'A3'),
+('1', 'B1'),
+('1', 'B2'),
+('1', 'B4'),
+('1', 'C4'),
+('1', 'C6'),
+('2', 'H1'),
+('2', 'H2'),
+('2', 'H3'),
+('2', 'H6');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `Configuration`
 --
 
 CREATE TABLE `configuration` (
@@ -87,32 +113,42 @@ INSERT INTO `configuration` (`ID`, `Default_Number_Of_Pages`, `Paper_Price`) VAL
 -- --------------------------------------------------------
 
 --
--- Table structure for table `printer`
+-- Cấu trúc bảng cho bảng `Printer`
 --
 
-CREATE TABLE `printer` (
+CREATE TABLE `Printer` (
   `Printer_ID` varchar(50) NOT NULL,
-  `Model` text DEFAULT NULL,
-  `Brand` text DEFAULT NULL,
-  `Description` text DEFAULT NULL,
-  `Position` text DEFAULT NULL
+  `Printer_name` varchar(20) NOT NULL,
+  `Printer_desc` varchar(100) DEFAULT NULL,
+  `Printer_avai` char(1) DEFAULT NULL CHECK (`Printer_avai` in ('Y','N')),
+  `Printer_campusloc` char(1) DEFAULT NULL,
+  `Printer_buildingloc` char(2) DEFAULT NULL,
+  `Printer_room` varchar(3) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `printer`
+-- Đang đổ dữ liệu cho bảng `Printer`
 --
 
-INSERT INTO `printer` (`Printer_ID`, `Model`, `Brand`, `Description`, `Position`) VALUES
-('Printer1', NULL, NULL, NULL, NULL),
-('Printer2', NULL, NULL, NULL, NULL);
+INSERT INTO `Printer` (`Printer_ID`, `Printer_name`, `Printer_desc`, `Printer_avai`, `Printer_campusloc`, `Printer_buildingloc`, `Printer_room`) VALUES
+('1A21011', 'Canon 1', 'Lorem Ipsum', 'Y', '1', 'A2', '101'),
+('1A21012', 'Canon 2', 'Lorem Ipsum', 'N', '1', 'A2', '101'),
+('1A33051', 'Canon 3', 'Lorem Ipsum', 'N', '1', 'A3', '305'),
+('1A33052', 'Canon 3', 'Lorem Ipsum', 'N', '1', 'A3', '305'),
+('1A33053', 'Canon 3', 'Lorem Ipsum', 'N', '1', 'A3', '305'),
+('2H11031', 'Canon 1', 'Lorem Ipsum', 'Y', '2', 'H1', '103'),
+('2H22021', 'Canon 2', 'Lorem Ipsum', 'N', '2', 'H2', '202'),
+('2H62011', 'Canon 2', 'Lorem Ipsum', 'N', '2', 'H6', '201'),
+('2H62012', 'Canon 2', 'Lorem Ipsum', 'N', '2', 'H6', '201'),
+('2H62013', 'Canon 2', 'Lorem Ipsum', 'N', '2', 'H6', '201');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `printing_request`
+-- Cấu trúc bảng cho bảng `Printing_Request`
 --
 
-CREATE TABLE `printing_request` (
+CREATE TABLE `Printing_Request` (
   `Request_ID` int(11) NOT NULL,
   `Registration_Date` datetime NOT NULL,
   `Completion_Date` datetime DEFAULT NULL,
@@ -125,19 +161,19 @@ CREATE TABLE `printing_request` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `printing_request`
+-- Đang đổ dữ liệu cho bảng `Printing_Request`
 --
 
-INSERT INTO `printing_request` (`Request_ID`, `Registration_Date`, `Completion_Date`, `File_Name`, `Pages_Per_Sheet`, `Number_Of_Copies`, `Printer_ID`, `Request_Status`, `Owner_ID`) VALUES
-(1, '2023-10-09 07:05:29', '2023-10-09 10:18:02', '03_Ch3 Introduction_2023.pdf', 1, 4, 'Printer1', 'Đã hoàn thành', 2110103),
-(3, '2023-11-23 07:20:13', NULL, '02_Ch2 Introduction_2023.pdf', 4, 2, 'Printer2', 'Đã gửi', 2110103),
-(9, '2023-11-25 11:39:43', NULL, '01_Ch1 Introduction_2023.pdf', 2, 1, 'Printer2', 'Đã lưu', 2110103),
-(10, '2023-12-01 14:50:51', '2023-12-02 10:18:02', 'LAB 11.odt', 1, 2, 'Printer1', 'Đã hoàn thành', 2110234);
+INSERT INTO `Printing_Request` (`Request_ID`, `Registration_Date`, `Completion_Date`, `File_Name`, `Pages_Per_Sheet`, `Number_Of_Copies`, `Printer_ID`, `Request_Status`, `Owner_ID`) VALUES
+(1, '2023-10-09 07:05:29', '2023-10-09 10:18:02', '03_Ch3 Introduction_2023.pdf', 1, 4, '1A21011', 'Đã hoàn thành', 2110104),
+(3, '2023-11-23 07:20:13', NULL, '02_Ch2 Introduction_2023.pdf', 4, 2, '1A21012', 'Đã gửi', 2110104),
+(9, '2023-11-25 11:39:43', NULL, '01_Ch1 Introduction_2023.pdf', 2, 1, '1A33051', 'Đã lưu', 2110104),
+(10, '2023-12-01 14:50:51', '2023-12-02 10:18:02', 'LAB 11.odt', 1, 2, '1A33051', 'Đã hoàn thành', 2110234);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `refill_dates`
+-- Cấu trúc bảng cho bảng `Refill_Dates`
 --
 
 CREATE TABLE `refill_dates` (
@@ -153,23 +189,24 @@ INSERT INTO `refill_dates` (`date_id`, `date`) VALUES
 (3, '2023-12-06 20:08:00'),
 (4, '2023-11-06 20:08:00');
 
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `requested_page_numbers`
+-- Cấu trúc bảng cho bảng `Requested_Page_Numbers`
 --
 
-CREATE TABLE `requested_page_numbers` (
+CREATE TABLE `Requested_Page_Numbers` (
   `Request_ID` int(11) NOT NULL,
   `Start_Page_Number` int(11) NOT NULL,
   `End_Page_Number` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `requested_page_numbers`
+-- Đang đổ dữ liệu cho bảng `Requested_Page_Numbers`
 --
 
-INSERT INTO `requested_page_numbers` (`Request_ID`, `Start_Page_Number`, `End_Page_Number`) VALUES
+INSERT INTO `Requested_Page_Numbers` (`Request_ID`, `Start_Page_Number`, `End_Page_Number`) VALUES
 (1, 30, 70),
 (3, 1, 102),
 (9, 3, 34),
@@ -181,18 +218,18 @@ INSERT INTO `requested_page_numbers` (`Request_ID`, `Start_Page_Number`, `End_Pa
 -- --------------------------------------------------------
 
 --
--- Table structure for table `request_status`
+-- Cấu trúc bảng cho bảng `Request_Status`
 --
 
-CREATE TABLE `request_status` (
+CREATE TABLE `Request_Status` (
   `Request_Status` varchar(50) NOT NULL DEFAULT 'Đã lưu'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `request_status`
+-- Đang đổ dữ liệu cho bảng `Request_Status`
 --
 
-INSERT INTO `request_status` (`Request_Status`) VALUES
+INSERT INTO `Request_Status` (`Request_Status`) VALUES
 ('Đã gửi'),
 ('Đã hoàn thành'),
 ('Đã lưu');
@@ -200,10 +237,10 @@ INSERT INTO `request_status` (`Request_Status`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Cấu trúc bảng cho bảng `Users`
 --
 
-CREATE TABLE `users` (
+CREATE TABLE `Users` (
   `ID` int(11) NOT NULL,
   `Fname` varchar(50) NOT NULL,
   `Lname` varchar(50) NOT NULL,
@@ -217,20 +254,20 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `users`
+-- Đang đổ dữ liệu cho bảng `Users`
 --
 
-INSERT INTO `users` (`ID`, `Fname`, `Lname`, `Password`, `Email`, `Role`, `Sex`, `Balance`, `DateOfBirth`, `Username`) VALUES
-(2110103, 'Dương', 'Hà Thuỳ', '$2y$10$.9QnFRwy8qmuKzJ6ZxToW.P1PPCXyrgU4Lqj67kMGB/iLykjEn7E2', 'duong.hathuy@hcmut.edu.vn', 'Student', 0, 100, '2023-02-15', 'duong.hathuy'),
-(2110234, 'Hoàng', 'Nguyễn Việt', '$2y$10$.9QnFRwy8qmuKzJ6ZxToW.P1PPCXyrgU4Lqj67kMGB/iLykjEn7E2', 'hoang.nguyenviet@hcmut.edu.vn', 'Student', 1, 100, '2003-05-14', 'hoang.nguyenviet');
+INSERT INTO `Users` (`ID`, `Fname`, `Lname`, `Password`, `Email`, `Role`, `Sex`, `Balance`, `DateOfBirth`, `Username`) VALUES
+(2110104, 'Dương', 'Hà Thuỳ', '$2y$10$.9QnFRwy8qmuKzJ6ZxToW.P1PPCXyrgU4Lqj67kMGB/iLykjEn7E2', 'duong.hathuy@hcmut.edu.vn', 'SPSO', 0, 79, '2023-02-15', 'duong.hathuy'),
+(2110234, 'Hoàng', 'Nguyễn Việt', '$2y$10$.9QnFRwy8qmuKzJ6ZxToW.P1PPCXyrgU4Lqj67kMGB/iLykjEn7E2', 'hoang.nguyenviet@hcmut.edu.vn', 'Student', 1, 124, '2003-05-14', 'hoang.nguyenviet');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_addresses`
+-- Cấu trúc bảng cho bảng `User_Addresses`
 --
 
-CREATE TABLE `user_addresses` (
+CREATE TABLE `User_Addresses` (
   `User_ID` int(11) NOT NULL,
   `Province` varchar(50) NOT NULL,
   `District` varchar(50) NOT NULL,
@@ -239,98 +276,108 @@ CREATE TABLE `user_addresses` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `user_addresses`
+-- Đang đổ dữ liệu cho bảng `User_Addresses`
 --
 
-INSERT INTO `user_addresses` (`User_ID`, `Province`, `District`, `Commune`, `Street`) VALUES
-(2110103, 'Thành Phố Hồ Chí Minh', 'Quận 3', 'Phường 7', '280 Điện Biên Phủ'),
-(2110103, 'Thành Phố Hồ Chí Minh', 'Quận 3', 'Phường 7', '58 Bà Huyện Thanh Quan'),
-(2110103, 'Tỉnh Long An', 'Huyện Cần Giuộc', 'Xã Thuận Thành', '88 Thuận Tây'),
+INSERT INTO `User_Addresses` (`User_ID`, `Province`, `District`, `Commune`, `Street`) VALUES
+(2110104, 'Thành Phố Hồ Chí Minh', 'Quận 3', 'Phường 7', '280 Điện Biên Phủ'),
+(2110104, 'Thành Phố Hồ Chí Minh', 'Quận 3', 'Phường 7', '58 Bà Huyện Thanh Quan'),
+(2110104, 'Tỉnh Long An', 'Huyện Cần Giuộc', 'Xã Thuận Thành', '88 Thuận Tây'),
 (2110234, 'Thành Phố Hồ Chí Minh', 'Quận 7', 'Phường Bình Thuận', '3 Lâm Văn Bền');
 
 --
--- Indexes for dumped tables
+-- Chỉ mục cho các bảng đã đổ
 --
 
 --
--- Indexes for table `accepted_file_types`
+-- Chỉ mục cho bảng `Accepted_File_Types`
 --
-ALTER TABLE `accepted_file_types`
+ALTER TABLE `Accepted_File_Types`
   ADD PRIMARY KEY (`File_Type`);
 
 --
--- Indexes for table `bpp_order`
+-- Chỉ mục cho bảng `BPP_Order`
 --
-ALTER TABLE `bpp_order`
+ALTER TABLE `BPP_Order`
   ADD PRIMARY KEY (`Order_ID`),
   ADD KEY `Owner_ID` (`Owner_ID`);
 
 --
--- Indexes for table `configuration`
+-- Chỉ mục cho bảng `Configuration`
 --
-ALTER TABLE `configuration`
+ALTER TABLE `Configuration`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `printer`
+-- Chỉ mục cho bảng `Printer`
 --
-ALTER TABLE `printer`
+ALTER TABLE `Printer`
   ADD PRIMARY KEY (`Printer_ID`);
 
 --
--- Indexes for table `printing_request`
+-- Chỉ mục cho bảng `Printing_Request`
 --
-ALTER TABLE `printing_request`
+ALTER TABLE `Printing_Request`
   ADD PRIMARY KEY (`Request_ID`),
   ADD KEY `Printer_ID` (`Printer_ID`),
-  ADD KEY `Request_Status` (`Request_Status`),
-  ADD KEY `Owner_ID` (`Owner_ID`);
+  ADD KEY `Owner_ID` (`Owner_ID`),
+  ADD KEY `Request_Status` (`Request_Status`);
 
 --
--- Indexes for table `refill_dates`
+-- Chỉ mục cho bảng `Refill_Dates`
 --
-ALTER TABLE `refill_dates`
-  ADD PRIMARY KEY (`date_id`);
+ALTER TABLE `Refill_Dates`
+  ADD PRIMARY KEY (`Refill_Date`);
 
 --
--- Indexes for table `requested_page_numbers`
+-- Chỉ mục cho bảng `Requested_Page_Numbers`
 --
-ALTER TABLE `requested_page_numbers`
+ALTER TABLE `Requested_Page_Numbers`
   ADD PRIMARY KEY (`Request_ID`,`Start_Page_Number`,`End_Page_Number`);
 
 --
--- Indexes for table `request_status`
+-- Chỉ mục cho bảng `Request_Status`
 --
-ALTER TABLE `request_status`
+ALTER TABLE `Request_Status`
   ADD PRIMARY KEY (`Request_Status`);
 
 --
--- Indexes for table `users`
+-- Chỉ mục cho bảng `Users`
 --
-ALTER TABLE `users`
+ALTER TABLE `Users`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `user_addresses`
+-- Chỉ mục cho bảng `User_Addresses`
 --
-ALTER TABLE `user_addresses`
+ALTER TABLE `User_Addresses`
   ADD PRIMARY KEY (`User_ID`,`Province`,`District`,`Commune`,`Street`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT cho các bảng đã đổ
 --
 
 --
--- AUTO_INCREMENT for table `bpp_order`
+-- AUTO_INCREMENT cho bảng `BPP_Order`
 --
-ALTER TABLE `bpp_order`
-  MODIFY `Order_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
+ALTER TABLE `BPP_Order`
+  MODIFY `Order_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=120;
 
 --
--- AUTO_INCREMENT for table `printing_request`
+-- AUTO_INCREMENT cho bảng `Printing_Request`
 --
-ALTER TABLE `printing_request`
+ALTER TABLE `Printing_Request`
   MODIFY `Request_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT cho bảng `Users`
+--
+ALTER TABLE `Users`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2110237;
+
+--
+-- Các ràng buộc cho các bảng đã đổ
+--
 
 --
 -- AUTO_INCREMENT for table `refill_dates`
@@ -339,20 +386,25 @@ ALTER TABLE `refill_dates`
   MODIFY `date_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
--- AUTO_INCREMENT for table `users`
+-- Các ràng buộc cho bảng `BPP_Order`
 --
-ALTER TABLE `users`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2110237;
+ALTER TABLE `BPP_Order`
+  ADD CONSTRAINT `bpp_order_ibfk_1` FOREIGN KEY (`Owner_ID`) REFERENCES `Users` (`ID`) ON UPDATE CASCADE;
 
 --
--- Constraints for dumped tables
+-- Các ràng buộc cho bảng `Printing_Request`
 --
+ALTER TABLE `Printing_Request`
+  ADD CONSTRAINT `printing_request_ibfk_1` FOREIGN KEY (`Printer_ID`) REFERENCES `Printer` (`Printer_ID`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `printing_request_ibfk_2` FOREIGN KEY (`Printer_ID`) REFERENCES `Printer` (`Printer_ID`) ON DELETE CASCADE,
+  ADD CONSTRAINT `printing_request_ibfk_3` FOREIGN KEY (`Owner_ID`) REFERENCES `Users` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `printing_request_ibfk_4` FOREIGN KEY (`Request_Status`) REFERENCES `Request_Status` (`Request_Status`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `bpp_order`
+-- Các ràng buộc cho bảng `User_Addresses`
 --
-ALTER TABLE `bpp_order`
-  ADD CONSTRAINT `bpp_order_ibfk_1` FOREIGN KEY (`Owner_ID`) REFERENCES `users` (`ID`);
+ALTER TABLE `User_Addresses`
+  ADD CONSTRAINT `user_addresses_ibfk_1` FOREIGN KEY (`User_ID`) REFERENCES `Users` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
