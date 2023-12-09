@@ -50,7 +50,7 @@ if (isset($_POST['campus'])) {
         <div class="left-side">
             <div class="logo">
                 <a href="../UserHome/BeforeLoad.php">
-                    <img src="../images/logo.png" alt="logo"  style="cursor:pointer;"/>
+                    <img src="../images/logo.png" alt="logo" style="cursor:pointer;" />
                     <p>ĐẠI HỌC QUỐC GIA TP.HCM<br>TRƯỜNG ĐẠI HỌC BÁCH KHOA</p>
                 </a>
             </div>
@@ -109,7 +109,7 @@ if (isset($_POST['campus'])) {
                                 $selectedCampus = $_POST['campus'];
 
                                 if ($selectedCampus != null) {
-                                    $query = "SELECT * FROM printer_list WHERE printer_campusloc = '$selectedCampus'";
+                                    $query = "SELECT * FROM Printer WHERE Printer_campusloc = '$selectedCampus'";
                                     $result = $conn->query($query);
                                 }
                                 if ($result) {
@@ -178,14 +178,14 @@ if (isset($_POST['campus'])) {
                             $selectedCampus = $_POST['campus'];
 
                             if ($selectedCampus != null) {
-                                $query = "SELECT * FROM printer_list WHERE printer_campusloc = '$selectedCampus'";
+                                $query = "SELECT * FROM Printer WHERE Printer_campusloc = '$selectedCampus'";
                                 $result = $conn->query($query);
                             }
                             if ($result) {
                                 // Process the query result
                                 while ($row = $result->fetch_assoc()) {
                                     // Access the data from the row
-                                    $columnValue = $row['printer_buildingloc'];
+                                    $columnValue = $row['Printer_buildingloc'];
                                     // Generate the HTML code for each building option
                                     echo '<option class="embed" value="' . $columnValue . '">' . $columnValue . '</option>';
                                 }

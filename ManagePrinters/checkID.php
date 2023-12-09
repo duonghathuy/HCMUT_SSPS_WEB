@@ -6,7 +6,7 @@
 $id = $_POST['id'];
 
 // Prepare your SQL statement
-$sql = "SELECT * FROM printer_list WHERE printer_id = ?";
+$sql = "SELECT * FROM Printer WHERE printer_ID = ?";
 
 // Create a prepared statement
 $stmt = $conn->prepare($sql);

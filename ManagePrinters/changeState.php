@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $selection = 'Y';
 
     // Update query
-    $sql = "UPDATE printer_list SET printer_avai = '$selection' WHERE printer_id = '$printerID'";
+    $sql = "UPDATE Printer SET Printer_avai = '$selection' WHERE Printer_ID = '$printerID'";
 
     if ($conn->query($sql) === TRUE) {
         echo "Record updated successfully";

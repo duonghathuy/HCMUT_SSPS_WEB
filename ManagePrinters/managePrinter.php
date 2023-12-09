@@ -46,12 +46,12 @@ if (isset($_SESSION['username']) && !empty($_SESSION['username'])) {
 
     <!-- header section starts -->
 
-   
+
     <section class="header">
         <div class="left-side">
             <div class="logo">
                 <a href="../UserHome/BeforeLoad.php">
-                    <img src="../images/logo.png" alt="logo"  style="cursor:pointer;"/>
+                    <img src="../images/logo.png" alt="logo" style="cursor:pointer;" />
                     <p>ĐẠI HỌC QUỐC GIA TP.HCM<br>TRƯỜNG ĐẠI HỌC BÁCH KHOA</p>
                 </a>
             </div>
@@ -104,14 +104,14 @@ if (isset($_SESSION['username']) && !empty($_SESSION['username'])) {
                             $selectedCampus = $_POST['campus'];
 
                             if ($selectedCampus != null) {
-                                $query = "SELECT * FROM printer_list WHERE printer_campusloc = '$selectedCampus'";
+                                $query = "SELECT * FROM Printer WHERE Printer_campusloc = '$selectedCampus'";
                                 $result = $conn->query($query);
                             }
                             if ($result) {
                                 // Process the query result
                                 while ($row = $result->fetch_assoc()) {
                                     // Access the data from the row
-                                    $columnValue = $row['printer_buildingloc'];
+                                    $columnValue = $row['Printer_buildingloc'];
                                     // Generate the HTML code for each building option
                                     echo '<option class="embed" value="' . $columnValue . '">' . $columnValue . '</option>';
                                 }
@@ -286,10 +286,10 @@ if (isset($_SESSION['username']) && !empty($_SESSION['username'])) {
                 var selectedPrinter = $(this).val();
                 $.post('getPrinterDetails.php', { printerId: selectedPrinter }, function (response) {
                     var printer = JSON.parse(response);
-                    $('.printer-info-text').eq(0).text(printer.printer_id);
-                    $('.printer-info-text').eq(1).text(printer.printer_name);
-                    $('.printer-info-text').eq(2).text(printer.printer_room);
-                    $('.printer-info-text').eq(3).text(printer.printer_avai == 'Y' ? 'Đang hoạt động' : 'Không hoạt động');
+                    $('.printer-info-text').eq(0).text(printer.Printer_ID);
+                    $('.printer-info-text').eq(1).text(printer.Printer_name);
+                    $('.printer-info-text').eq(2).text(printer.Printer_room);
+                    $('.printer-info-text').eq(3).text(printer.Printer_avai == 'Y' ? 'Đang hoạt động' : 'Không hoạt động');
                 });
             });
         });

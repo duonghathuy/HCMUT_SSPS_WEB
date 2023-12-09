@@ -4,7 +4,7 @@
 if (isset($_POST['campus'])) {
     $selectedCampus = $_POST['campus'];
 
-    $query = "SELECT * FROM printer_list WHERE printer_campusloc = '$selectedCampus'";
+    $query = "SELECT * FROM Printer WHERE Printer_campusloc = '$selectedCampus'";
     $result = $conn->query($query);
 
     if ($result) {
@@ -12,7 +12,7 @@ if (isset($_POST['campus'])) {
         $options = '';
         while ($row = $result->fetch_assoc()) {
             // Access the data from the row
-            $columnValue = $row['printer_buildingloc'];
+            $columnValue = $row['Printer_buildingloc'];
             // Generate the HTML code for each building option
             $options .= '<option class="embed" value="' . $columnValue . '">' . $columnValue . '</option>';
         }
