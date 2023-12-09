@@ -16,9 +16,9 @@
         session_destroy();
 
         // Redirect to the home page or any other page after logout
-        header("Location: ../userHome/userHome.html"); 
+        header("Location: ../UserHome/Home.html"); 
         exit();
     }
-    header("Location: ../userHome/userHome.html"); 
+    header("Location: ../UserHome/Home.html"); 
 ?>
 

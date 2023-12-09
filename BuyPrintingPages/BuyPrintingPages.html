@@ -4,21 +4,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dịch vụ của tôi</title>
+    <title>Mua thêm trang in</title>
+
+    
     <!-- custom css file link -->
     <link rel="stylesheet" href="../style.css">
-    <link rel="stylesheet" href="SPSOServices.css" >
-    <script src="../SetUsernameOnHeader.js"></script>
+    <link rel="stylesheet" href="BuyPrintingPages.css" >
 
+    <!-- custom css file link -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="BuyPrintingPages.js"></script>
+    <script src="../SetUsernameOnHeader.js"></script>
 </head>
 <body>
     <!-- header section starts -->
-
     <header id="app-header">
         <section class="header">
             <div class="left-side">
                 <div class="logo">
-                    <a href="#">
+                    <a href="">
                         <img src="../images/logo.png" alt="logo" />
                         <p>ĐẠI HỌC QUỐC GIA TP.HCM<br>TRƯỜNG ĐẠI HỌC BÁCH KHOA</p>
                     </a>
@@ -39,29 +43,64 @@
             </div>
         </section>
     </header>
-
     <!-- header section ends -->
 
 
     <!-- body section starts -->
 
     <div class="body">
-        <h1 class="title">dịch vụ của tôi</h1>
+        <h1 class="title">MUA THÊM TRANG IN</h1>
 
-        <div class="service-list">
-            <div><a href="">thêm máy in</a></div>
-            <div><a href="">quản lý các máy in</a></div>
-            <div><a href="../ConfigureSystemDraft/ConfigureSystem.html">cấu hình hệ thống</a></div>
-            <div><a href="../SPSOPrintingHistory/PrintingHistory.html">nhật kí sử dụng dịch vụ in của tất cả sinh viên</a></div>
-            <div class="last-service"><a href="">các báo cáo về việc sử dụng hệ thống in</a></div>
+        <div class="balance-container">
+            <p>Số trang in hiện tại:</p>
+            <p class='balance'> ... trang (Khổ A4)</p>
+            
         </div>
+
+        <form class="registration">
+            <label for="quantity">Số lượng trang in mua thêm:</label>
+            <input type="number" id="quantity" name="quantity" placeholder="Số lượng trang (Khổ A4)" min="1">
+            <button type="submit" id="submit-order" name='submit-order' class="submit-order">Đăng ký</button>
+        </form>
+        
+        <p class='info-about-price'>(Lệ phí: ... VNĐ/trang in khổ  A4)</p>
+
+        <div class="registration-history">
+            <p>Lịch sử đăng ký:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Mã phiếu</th>
+                        <th>Ngày đăng ký</th>
+                        <th>Số lượng</th>
+                        <th>Lệ phí</th>
+                        <th class="payment-status-th">Thanh toán</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>2023-12-01</td>
+                        <td>12</td>
+                        <td class='total-price'>20000</td>
+                        <td class='payment-status $status'>
+                            <a href='' class='pay-btn  payment-btn $status' onclick='return confirmPay()'>Đã thanh toán</a>
+                            <span>/ </span>
+                            <a href='' class='delete-btn payment-btn' onclick='return confirmDelete()'>Xóa</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
     </div>
+
+
 
     <!-- body section ends -->
 
 
     <!-- footer section starts -->
-
     <footer id="app-footer">
         <div class="footer-container">
             <section class="footer">
@@ -91,7 +130,6 @@
             </div>
         </div>
     </footer>
-
     <!-- footer section ends -->
 </body>
 </html>

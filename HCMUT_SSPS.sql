@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: localhost
--- Thời gian đã tạo: Th12 08, 2023 lúc 09:05 PM
+-- Thời gian đã tạo: Th12 09, 2023 lúc 08:34 AM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.2.4
 
@@ -49,6 +49,7 @@ CREATE TABLE `BPP_Order` (
   `Order_ID` int(11) NOT NULL,
   `Order_Creation_Date` datetime NOT NULL,
   `Quantity` int(11) NOT NULL,
+  `Total_Price` int(11) NOT NULL DEFAULT 0,
   `Payment_Status` tinyint(4) NOT NULL,
   `Owner_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -57,12 +58,10 @@ CREATE TABLE `BPP_Order` (
 -- Đang đổ dữ liệu cho bảng `BPP_Order`
 --
 
-INSERT INTO `BPP_Order` (`Order_ID`, `Order_Creation_Date`, `Quantity`, `Payment_Status`, `Owner_ID`) VALUES
-(44, '2023-11-09 13:57:32', 12, 1, 2110103),
-(45, '2023-11-09 13:57:37', 42, 1, 2110103),
-(63, '2023-11-19 20:22:33', 24, 1, 2110103),
-(110, '2023-11-25 18:02:17', 6, 0, 2110103),
-(111, '2023-11-25 18:03:52', 5, 0, 2110103);
+INSERT INTO `BPP_Order` (`Order_ID`, `Order_Creation_Date`, `Quantity`, `Total_Price`, `Payment_Status`, `Owner_ID`) VALUES
+(117, '2023-12-09 14:01:30', 12, 4200, 1, 2110234),
+(118, '2023-12-09 14:01:43', 20, 7000, 0, 2110234),
+(119, '2023-12-09 14:10:37', 1, 350, 0, 2110104);
 
 -- --------------------------------------------------------
 
@@ -86,20 +85,65 @@ INSERT INTO `Configuration` (`ID`, `Default_Number_Of_Pages`, `Paper_Price`) VAL
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc bảng cho bảng `campus_building`
+--
+
+CREATE TABLE `campus_building` (
+	`printer_campusloc` CHAR(1) CHECK (printer_campusloc IN ('1' , '2')),
+	`printer_buildingloc` CHAR(2)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `campus_building`
+--
+
+
+INSERT INTO `campus_building` (`printer_campusloc`, `printer_buildingloc`) 
+VALUES 
+('1', 'A2'), 
+('1', 'A3'), 
+('1', 'B1'), 
+('1', 'B2'), 
+('1', 'B4'), 
+('1', 'C4'), 
+('1', 'C6'), 
+('2', 'H1'), 
+('2', 'H2'), 
+('2', 'H3'), 
+('2', 'H6');
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc bảng cho bảng `Printer`
 --
 
 CREATE TABLE `Printer` (
   `Printer_ID` varchar(50) NOT NULL,
-  `Model` text DEFAULT NULL,
-  `Brand` text DEFAULT NULL,
-  `Description` text DEFAULT NULL,
-  `Position` text DEFAULT NULL
+  `Printer_name` VARCHAR(20) NOT NULL,
+	`Printer_desc` VARCHAR(100),
+	`Printer_avai` CHAR(1) CHECK (`printer_avai` IN ('Y' , 'N')),
+	`Printer_campusloc` CHAR(1),
+	`Printer_buildingloc` CHAR(2),
+	`Printer_room` VARCHAR(3)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `Printer`
 --
+insert into `Printer` (`Printer_ID`, `Printer_name`, `Printer_desc`, `Printer_avai`, `Printer_campusloc`, `Printer_buildingloc`,  `Printer_room`)
+VALUES 
+('2H11031', 'Canon 1', 'Lorem Ipsum', 'Y', '2', 'H1', '103'),
+('1A21011', 'Canon 1', 'Lorem Ipsum', 'Y', '1', 'A2', '101'),
+('1A21012', 'Canon 2', 'Lorem Ipsum', 'N', '1', 'A2', '101'),
+('1A33051', 'Canon 3', 'Lorem Ipsum', 'N', '1', 'A3', '305'),
+('1A33052', 'Canon 3', 'Lorem Ipsum', 'N', '1', 'A3', '305'),
+('1A33053', 'Canon 3', 'Lorem Ipsum', 'N', '1', 'A3', '305'),
+('2H22021', 'Canon 2', 'Lorem Ipsum', 'N', '2', 'H2', '202'),
+('2H62011', 'Canon 2', 'Lorem Ipsum', 'N', '2', 'H6', '201'),
+('2H62012', 'Canon 2', 'Lorem Ipsum', 'N', '2', 'H6', '201'),
+('2H62013', 'Canon 2', 'Lorem Ipsum', 'N', '2', 'H6', '201');
+
 
 INSERT INTO `Printer` (`Printer_ID`, `Model`, `Brand`, `Description`, `Position`) VALUES
 ('Printer1', NULL, NULL, NULL, NULL),
@@ -128,9 +172,9 @@ CREATE TABLE `Printing_Request` (
 --
 
 INSERT INTO `Printing_Request` (`Request_ID`, `Registration_Date`, `Completion_Date`, `File_Name`, `Pages_Per_Sheet`, `Number_Of_Copies`, `Printer_ID`, `Request_Status`, `Owner_ID`) VALUES
-(1, '2023-10-09 07:05:29', '2023-10-09 10:18:02', '03_Ch3 Introduction_2023.pdf', 1, 4, 'Printer1', 'Đã hoàn thành', 2110103),
-(3, '2023-11-23 07:20:13', NULL, '02_Ch2 Introduction_2023.pdf', 4, 2, 'Printer2', 'Đã gửi', 2110103),
-(9, '2023-11-25 11:39:43', NULL, '01_Ch1 Introduction_2023.pdf', 2, 1, 'Printer2', 'Đã lưu', 2110103),
+(1, '2023-10-09 07:05:29', '2023-10-09 10:18:02', '03_Ch3 Introduction_2023.pdf', 1, 4, 'Printer1', 'Đã hoàn thành', 2110104),
+(3, '2023-11-23 07:20:13', NULL, '02_Ch2 Introduction_2023.pdf', 4, 2, 'Printer2', 'Đã gửi', 2110104),
+(9, '2023-11-25 11:39:43', NULL, '01_Ch1 Introduction_2023.pdf', 2, 1, 'Printer2', 'Đã lưu', 2110104),
 (10, '2023-12-01 14:50:51', '2023-12-02 10:18:02', 'LAB 11.odt', 1, 2, 'Printer1', 'Đã hoàn thành', 2110234);
 
 -- --------------------------------------------------------
@@ -218,8 +262,8 @@ CREATE TABLE `Users` (
 --
 
 INSERT INTO `Users` (`ID`, `Fname`, `Lname`, `Password`, `Email`, `Role`, `Sex`, `Balance`, `DateOfBirth`, `Username`) VALUES
-(2110103, 'Dương', 'Hà Thuỳ', '$2y$10$.9QnFRwy8qmuKzJ6ZxToW.P1PPCXyrgU4Lqj67kMGB/iLykjEn7E2', 'duong.hathuy@hcmut.edu.vn', 'Student', 0, 100, '2023-02-15', 'duong.hathuy'),
-(2110234, 'Hoàng', 'Nguyễn Việt', '$2y$10$.9QnFRwy8qmuKzJ6ZxToW.P1PPCXyrgU4Lqj67kMGB/iLykjEn7E2', 'hoang.nguyenviet@hcmut.edu.vn', 'Student', 1, 100, '2003-05-14', 'hoang.nguyenviet');
+(2110104, 'Dương', 'Hà Thuỳ', '$2y$10$.9QnFRwy8qmuKzJ6ZxToW.P1PPCXyrgU4Lqj67kMGB/iLykjEn7E2', 'duong.hathuy@hcmut.edu.vn', 'SPSO', 0, 79, '2023-02-15', 'duong.hathuy'),
+(2110234, 'Hoàng', 'Nguyễn Việt', '$2y$10$.9QnFRwy8qmuKzJ6ZxToW.P1PPCXyrgU4Lqj67kMGB/iLykjEn7E2', 'hoang.nguyenviet@hcmut.edu.vn', 'Student', 1, 124, '2003-05-14', 'hoang.nguyenviet');
 
 -- --------------------------------------------------------
 
@@ -240,10 +284,13 @@ CREATE TABLE `User_Addresses` (
 --
 
 INSERT INTO `User_Addresses` (`User_ID`, `Province`, `District`, `Commune`, `Street`) VALUES
-(2110103, 'Thành Phố Hồ Chí Minh', 'Quận 3', 'Phường 7', '280 Điện Biên Phủ'),
-(2110103, 'Thành Phố Hồ Chí Minh', 'Quận 3', 'Phường 7', '58 Bà Huyện Thanh Quan'),
-(2110103, 'Tỉnh Long An', 'Huyện Cần Giuộc', 'Xã Thuận Thành', '88 Thuận Tây'),
+(2110104, 'Thành Phố Hồ Chí Minh', 'Quận 3', 'Phường 7', '280 Điện Biên Phủ'),
+(2110104, 'Thành Phố Hồ Chí Minh', 'Quận 3', 'Phường 7', '58 Bà Huyện Thanh Quan'),
+(2110104, 'Tỉnh Long An', 'Huyện Cần Giuộc', 'Xã Thuận Thành', '88 Thuận Tây'),
 (2110234, 'Thành Phố Hồ Chí Minh', 'Quận 7', 'Phường Bình Thuận', '3 Lâm Văn Bền');
+
+
+-- --------------------------------------------------
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -321,7 +368,7 @@ ALTER TABLE `User_Addresses`
 -- AUTO_INCREMENT cho bảng `BPP_Order`
 --
 ALTER TABLE `BPP_Order`
-  MODIFY `Order_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
+  MODIFY `Order_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=120;
 
 --
 -- AUTO_INCREMENT cho bảng `Printing_Request`
@@ -343,7 +390,7 @@ ALTER TABLE `Users`
 -- Các ràng buộc cho bảng `BPP_Order`
 --
 ALTER TABLE `BPP_Order`
-  ADD CONSTRAINT `bpp_order_ibfk_1` FOREIGN KEY (`Owner_ID`) REFERENCES `users` (`ID`);
+  ADD CONSTRAINT `bpp_order_ibfk_1` FOREIGN KEY (`Owner_ID`) REFERENCES `Users` (`ID`) ON UPDATE CASCADE;
 
 --
 -- Các ràng buộc cho bảng `Printing_Request`
@@ -351,15 +398,18 @@ ALTER TABLE `BPP_Order`
 ALTER TABLE `Printing_Request`
   ADD CONSTRAINT `printing_request_ibfk_1` FOREIGN KEY (`Printer_ID`) REFERENCES `Printer` (`Printer_ID`),
   ADD CONSTRAINT `printing_request_ibfk_2` FOREIGN KEY (`Request_Status`) REFERENCES `Request_Status` (`Request_Status`),
-  ADD CONSTRAINT `printing_request_ibfk_3` FOREIGN KEY (`Owner_ID`) REFERENCES `Student` (`ID`);
+  ADD CONSTRAINT `printing_request_ibfk_3` FOREIGN KEY (`Owner_ID`) REFERENCES `Users` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Các ràng buộc cho bảng `User_Addresses`
 --
 ALTER TABLE `User_Addresses`
-  ADD CONSTRAINT `user_addresses_ibfk_1` FOREIGN KEY (`User_ID`) REFERENCES `Users` (`ID`);
+  ADD CONSTRAINT `user_addresses_ibfk_1` FOREIGN KEY (`User_ID`) REFERENCES `Users` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
+ALTER TABLE `Printer`
+  ADD CONSTRAINT `printer_list_campus_building_ibfk_1` FOREIGN KEY (`printer_campusloc`, `printer_buildingloc`) REFERENCES `campus_building`(`printer_campusloc`, `printer_buildingloc`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

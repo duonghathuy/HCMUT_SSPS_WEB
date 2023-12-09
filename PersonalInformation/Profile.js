@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded",function () {
-    getProfile(2110103);
+    let id = localStorage.getItem("ID");
+
+    getProfile(id);
   
     let updateButton = document.querySelector(".edit-btn");
 

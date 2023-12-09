@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-    let id = 2110103;
+    let id = localStorage.getItem("ID");
     
     getAddressesList(id);
 
