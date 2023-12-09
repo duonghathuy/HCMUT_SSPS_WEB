@@ -98,6 +98,10 @@ section {
     text-transform: capitalize;
 }
 
+.header .right-side .seperator {
+    margin: 0 5px;
+}
+
 .header .right-side .username-header:hover {
     text-decoration: underline;
 }
