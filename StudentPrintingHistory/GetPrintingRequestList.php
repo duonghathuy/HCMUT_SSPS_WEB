@@ -1,10 +1,12 @@
 <?php
     @include_once("../ConnectDB.php");
 
+    $ID = $_POST['id'];
+
     // Get Balance of Owner_ID
     $sql = "SELECT Balance
         FROM Users
-        WHERE ID = '2110103'";
+        WHERE ID = '$ID'";
 
     $result = $conn->query($sql);
     $row = $result->fetch_assoc();
@@ -14,13 +16,13 @@
     // Get Printing_Request DB
     $sql = "SELECT Request_ID, Registration_Date, Completion_Date, File_Name, Pages_Per_Sheet, Number_Of_Copies, Printer_ID, Request_Status
             FROM Printing_Request
-            WHERE Owner_ID = 2110103
+            WHERE Owner_ID = '$ID'
             ORDER BY Registration_Date DESC
             ";
 
     $result = $conn->query($sql);
 
-    $data = array();
+    $data = Array();
 
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {

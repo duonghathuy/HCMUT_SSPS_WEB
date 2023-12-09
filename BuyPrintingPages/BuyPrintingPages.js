@@ -1,6 +1,6 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function(e) {
     let id = localStorage.getItem("ID");
-
+    
     getData(id);
     getRegistrationHistory(id);
 
@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         let value = validateInputs();
 
-        if(value === false) return false;
+        if(value == false) return false;
 
         let quantity = document.getElementById("quantity").value;
 
@@ -41,6 +41,9 @@ function getData(id) {
 
             document.querySelector("p.balance").innerHTML = `${data['balance']} trang (Khổ A4)`;
             document.querySelector("p.info-about-price").innerHTML = `(Lệ phí: ${data['price']} VNĐ/trang in khổ  A4)`;
+        },
+        fail: function() {
+            console.log("Get Data Fail!");
         }
     });
 }
