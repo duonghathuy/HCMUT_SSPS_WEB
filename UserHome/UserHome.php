@@ -34,8 +34,8 @@
             </div>
         
             <div class="right-side">
-                <div class = "username-header"></div>
-                <div>|</div>
+                <a href="#" class = "username-header"></a>
+                <div class="seperator">|</div>
                 <div>
                     <a href="../Identify/logout.php" class="login">Đăng xuất</a>
                 </div>
