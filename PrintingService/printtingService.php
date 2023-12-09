@@ -7,8 +7,11 @@
     $printerResultPointer = mysqli_query($connection,$selectPrinterQuery);
 ?>
     <?php if (isset($_SESSION['errorMessage'])){ ?>
+        <?php
+            $message = $_SESSION['errorMessage'];
+        ?>
         <script>
-            window.alert("<?= $_SESSION['errorMessage'] ?>");
+            window.alert("<?= $message ?>");
         </script>
         <?php
             unset($_SESSION['errorMessage']);
