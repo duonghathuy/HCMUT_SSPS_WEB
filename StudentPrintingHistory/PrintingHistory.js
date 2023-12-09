@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
-    getRequestList();
+    let id = localStorage.getItem("ID");
+    getRequestList(id);
     getPrinterList();
 })
 
@@ -19,7 +20,7 @@ $(document).ready(function() {
 
 
 function getPrinterList () {
-    return $.ajax({
+    $.ajax({
         url: "GetPrinterList.php",
         async: false,
         success: function (response) {
@@ -36,13 +37,16 @@ function getPrinterList () {
     });
 };
 
-function getRequestList() {
-    return $.ajax({
+function getRequestList(id) {
+    $.ajax({
+        type: "POST",
         url: "GetPrintingRequestList.php",
-        async: false,
+        data: {
+            id: id
+        },
         success: function (response) {
             let data = JSON.parse(response);
-            
+            console.log(data);
             let requestsHTML = `
                 <tr class="no-request no-match">
                     <td>...</td>
@@ -59,6 +63,7 @@ function getRequestList() {
             `;
 
             data.forEach(item => {
+                
                 let status = 'saved';
                 let Request_Status = 'Gửi in';
 
@@ -101,6 +106,9 @@ function getRequestList() {
             if(data.length == 0) {
                 document.querySelector(".no-request").classList.remove("no-match");
             }
+        },
+        fail: function() {
+            console.log("Get Printing Request List Fail!");
         }
     });
 };

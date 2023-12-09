@@ -25,7 +25,6 @@ function multipleSelectDropdown(className, object) {
 
         if(selectedOptions.length == 0) {
             tagsHTML = '<span class="placeholder">Chọn danh sách các '+object+'</span>';
-            console.log(tagsHTML);
         } else {
             selectedOptions.forEach(function(option){
                 tagsHTML += '<span class="tag">'+option.text+'<button class="remove-tag" data-value="'+option.value+'">&times;</button></span>';
