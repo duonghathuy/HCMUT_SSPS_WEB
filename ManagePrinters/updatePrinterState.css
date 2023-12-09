@@ -1,0 +1,242 @@
+.enter-ID-text {
+  position: absolute;
+  top: 3px;
+  left: 0;
+  font-weight: 500;
+}
+.group-child7 {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: var(--br-9xs);
+  background-color: var(--color-gainsboro);
+  width: 100px;
+  height: 25px;
+}
+.h11011 {
+  position: absolute;
+  top: calc(50% - 9.5px);
+  left: calc(50% - 36px);
+  font-weight: 500;
+}
+.rectangle-parent5 {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100px;
+  height: 25px;
+}
+.enter-ID{
+  top: 70px;
+  left: 20px;
+  width: 260px;
+  height: 25px;
+  position: relative; 
+  /* top: 30px; */
+  /* padding: 15px; */
+  flex-direction: column;
+  align-items: flex-start;
+  padding: var(--padding-9xl-5);
+  gap: var(--gap-base);
+}
+.validate-ID{
+  position: relative;
+  align-self: flex-end;
+  top: 120px;
+  left: 20px;
+  width: 260px;
+  height: 25px;
+}
+.bt-tt {
+  position: absolute;
+  top: 20px;
+  left: calc(50% - 68px);
+}
+.button {
+  border-radius: var(--br-9xs);
+  background-color: var(--color-dimgray);
+  width: 90px;
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-3xs);
+  box-sizing: border-box;
+  cursor: pointer;
+}
+.tip-tc {
+  position: relative;
+  font-weight: 500;
+  color: var(--color-white);
+}
+.button1 {
+  display: flex;
+  flex-direction: row;
+}
+.button1 {
+  border-radius: var(--br-9xs);
+  background-color: var(--color-steelblue);
+  width: 90px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-3xs);
+  box-sizing: border-box;
+  cursor: pointer;
+}
+.confirm-change {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  /* top: 0px; */
+  align-items: center;
+  justify-content: center;
+  gap: 34px;
+  color: var(--color-steelblue);
+}
+.bt,
+.c-s-1-item {
+  position: relative;
+}
+.choose-button {
+  position: relative;
+  border-radius: 50%;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-black);
+  box-sizing: border-box;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+.bt {
+  letter-spacing: 0.02em;
+  line-height: 26.67px;
+  font-weight: 500;
+}
+.bat-tat-may-in1,
+.c-s-1-group,
+.c-s-12 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.c-s-12 {
+  justify-content: flex-start;
+  gap: var(--gap-3xs);
+}
+.bat-tat-may-in1,
+.c-s-1-group {
+  justify-content: center;
+}
+.c-s-1-group {
+  gap: var(--gap-xl);
+}
+.change-printer-state{
+  padding: 15px;
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /* top: 186px; */
+  /* left: 88px; */
+}
+
+
+.container {
+  position: relative;
+  background-color: var(--color-white);
+  width: auto;
+  height: 300px;
+  overflow: hidden;
+  max-width: 90%;
+  max-height: 90%;
+  text-align: center;
+  font-size: var(--font-size-base);
+  color: var(--color-black);
+  font-family: var(--font-inter);
+  display: flex;
+  flex-direction: column;
+}
+
+.input{
+  width: 180px;
+  flex-direction: row;
+  align-items: center;
+  padding: var(--padding-3xs);
+  color: var(--color-gray);
+  border-radius: var(--br-9xs);
+  border: 1px solid var(--color-dimgray);
+  display: flex;
+  justify-content: center;
+}
+
+.input-text{
+  position: relative;
+  align-items: center;
+  width: 221px;
+  display: flex;
+  justify-content: center;
+}
+
+.menu {
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: var(--gap-base);
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  top: 30px;
+}
+
+.input-ID{
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: 30px;
+  padding: 15px;
+  flex-direction: column;
+  /* align-items: flex-start; */
+  padding: var(--padding-9xl-5);
+  gap: var(--gap-base);
+}
+
+.ID-text{
+  display: flex;
+  justify-content: center;
+  height: auto;
+  width: 160px;
+  position: relative;
+  font-weight: 500;
+  align-items: center;
+  flex-shrink: 0;
+  text-align: center;
+  border: none;
+  font-size: var(--font-size-base);
+  font-family: var(--font-inter);
+}
+
+.ID-text:focus {
+  outline: none; 
+  border: none; 
+}
+
+.active-button {
+  background-color: black;
+}
+
+.check-button{
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-content: center;
+  width: 95px;
+  border-radius: 4px;
+  border: 1px solid #000;
+  height: 36px;
+  cursor: pointer;
+}
+
+.clicked{}
