@@ -38,5 +38,5 @@
 
     $result = $conn->query($sql);
 
-    header("Location: BuyPrintingPages.php");
+    header("Location: BuyPrintingPages.html");
 ?>

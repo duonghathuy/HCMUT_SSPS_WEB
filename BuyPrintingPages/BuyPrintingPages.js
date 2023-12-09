@@ -26,6 +26,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
             }
         });
     });
+
 });
 
 function getData(id) {
