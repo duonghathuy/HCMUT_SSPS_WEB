@@ -22,7 +22,7 @@
                 $row = mysqli_fetch_assoc($result);
                 if (password_verify($password, $row["Password"])) {
                     session_start();
-                    $_SESSION["username"] = $username;
+                    $_SESSION["username"] = $row['Fname'] . " " . $row['Lname'];
                     $_SESSION["id"] = $row["ID"];
                     $_SESSION["role"] = $row["Role"];
                     header("Location: ../UserHome/UserHome.php");
