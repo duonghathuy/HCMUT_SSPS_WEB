@@ -40,6 +40,7 @@ if (isset($_SESSION['username']) && !empty($_SESSION['username'])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../SetUsernameOnHeader.js"></script>
 </head>
 
 <body>
@@ -47,34 +48,31 @@ if (isset($_SESSION['username']) && !empty($_SESSION['username'])) {
     <!-- header section starts -->
 
 
-    <section class="header">
-        <div class="left-side">
-            <div class="logo">
-                <a href="../UserHome/BeforeLoad.php">
-                    <img src="../images/logo.png" alt="logo" style="cursor:pointer;" />
-                    <p>ĐẠI HỌC QUỐC GIA TP.HCM<br>TRƯỜNG ĐẠI HỌC BÁCH KHOA</p>
-                </a>
-            </div>
-
-            <div class="menu-bar">
-                <div class="first-option"><a href="../UserHome/BeforeLoad.php">trang chủ</a></div>
-                <div class="second-option"><a href="../Login_with_Gmail/homeAfterLogin_Manage.php">dịch vụ của tôi</a>
+    <header id="app-header">
+        <section class="header">
+            <div class="left-side">
+                <div class="logo">
+                    <a href="#">
+                        <img src="../images/logo.png" alt="logo" />
+                        <p>ĐẠI HỌC QUỐC GIA TP.HCM<br>TRƯỜNG ĐẠI HỌC BÁCH KHOA</p>
+                    </a>
+                </div>
+                
+                <div class="menu-bar">
+                    <div class="first-option"><a href="">trang chủ</a></div>
+                    <div class="second-option"><a href="" >dịch vụ của tôi</a></div>
                 </div>
             </div>
-        </div>
-
-        <div class="right-side">
-            <div class="username">
-                <a href="../Login_with_Gmail/infoManage.php">
-                    <?php echo $Username; ?>
-                </a>
+        
+            <div class="right-side">
+                <a href="" class="username-header">Username</a>
+                <div class="seperator">|</div>
+                <div>
+                    <a href="#" class="logout">Đăng xuất</a>
+                </div>
             </div>
-            <div class="seperator">|</div>
-            <div>
-                <a href="../Login_with_Gmail/home.php" class="login">Đăng xuất</a>
-            </div>
-        </div>
-    </section>
+        </section>
+    </header>
     <!-- header section ends -->
 
     <section class="main">
