@@ -12,7 +12,6 @@
     <!-- custom css file link -->
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" type="text/css" href="UserHome.css" >
-    <script src="../SetUsernameOnHeader.js"></script>
 
 </head>
 <body>
@@ -30,13 +29,15 @@
                 
                 <div class="menu-bar">
                     <div class="first-option"><a href="">trang chủ</a></div>
-                    <div class="second-option"><a href="" >dịch vụ của tôi</a></div>
+                    <div class="second-option"><a href="">dịch vụ của tôi</a></div>
                 </div>
             </div>
         
             <div class="right-side">
+                <div class = "username-header"></div>
+                <div>|</div>
                 <div>
-                    <a href="#" class="login">Đăng nhập</a>
+                    <a href="../Identify/logout.php" class="login">Đăng xuất</a>
                 </div>
             </div>
         </section>
@@ -94,7 +95,7 @@
     <!-- footer section ends -->
 </body>
 </html>
-
+<script src="../SetUsernameOnHeader.js"></script>
 <script>
     localStorage.setItem("ID", <?php echo $_SESSION['id']; ?>)
     localStorage.setItem("Username", <?php echo "\"".$_SESSION['username']."\""; ?>)
