@@ -14,6 +14,14 @@
         unset($_SESSION['errorMessage']);
     ?>
 <?php } ?>
+<?php if (isset($_SESSION['requestSuccess'])){ ?>
+    <script>
+        window.alert("Successfully request printing for a document\n");
+    </script>
+    <?php
+        unset($_SESSION['requestSuccess']);
+    ?>
+<?php } ?>
 
 <!DOCTYPE html>
 <html lang="en">

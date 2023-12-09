@@ -54,7 +54,7 @@ if (isset($_SESSION) == false){
         $endPage = $pair[1];
         $requestId = mysqli_insert_id($connection);
 
-        $query = "INSERT INTO requested_page_numbers VALUES ($requestID,$startPage,$endPage)";
+        $query = "INSERT INTO requested_page_numbers VALUES ($requestId,$startPage,$endPage)";
         if (mysqli_query($connection,$query) == false){
             $_SESSION['errorMessage'] = "Insert into requested_page_numbers failed\n";
         }
@@ -62,6 +62,7 @@ if (isset($_SESSION) == false){
 
     if ($_SESSION['errorMessage'] == ""){
         unset($_SESSION["errorMessage"]);
+        $_SESSION['requestSuccess'] = "success";
     }
     header("location: printtingService.php");
 ?>

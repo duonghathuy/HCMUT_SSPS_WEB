@@ -1,4 +1,7 @@
 <?php
+    if (isset($_SESSION) == false){
+        session_start();
+    }
     include_once "../ConnectDB.php";
     if (isset($_POST["submitButton"])) {
         $error = "";
@@ -21,7 +24,6 @@
             if (mysqli_num_rows($result) == 1) {
                 $row = mysqli_fetch_assoc($result);
                 if (password_verify($password, $row["Password"])) {
-                    session_start();
                     $_SESSION["username"] = $row['Lname'] . " " . $row['Fname'];
                     $_SESSION["id"] = $row["ID"];
                     $_SESSION["role"] = $row["Role"];
