@@ -1,3 +1,20 @@
+<?php
+    if (isset($_SESSION) == false){
+        session_start();
+    }
+    include_once "DatabaseConnection.php";
+    $selectPrinterQuery = "SELECT * FROM printer";
+    $printerResultPointer = mysqli_query($connection,$selectPrinterQuery);
+?>
+<?php if (isset($_SESSION['errorMessage'])){ ?>
+    <script>
+        window.alert("<?= $_SESSION['errorMessage'] ?>")
+    </script>
+    <?php
+        unset($_SESSION['errorMessage']);
+    ?>
+<?php } ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,6 +28,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 
     <!-- js file link -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="../SetUsernameOnHeader.js"></script>
 </head>
 <body>
@@ -47,73 +65,76 @@
     <!-- body section starts -->
 
     <div class="body">
-        <h1 class="title">đăng ký in tài liệu</h1>
-        <p>Tệp tin cần in:</p>
-        <div class = "mainFrame">
-            <div id = "inputFile"> 
-                <div id = uploadFile>
-                    <label id = "inputLabel" for="myFile"><i style = "margin-right: 5px;" class="fas fa-file"></i>Chọn tệp tin</label>
-                    <input style = "display: none;"type="file" id="myFile" name="filename" onchange="displayFileName()">
-                    <p id="selectedFileName">Không có tệp nào được chọn</p>
-                </div>
-                <div id = "choosePrintter">
-                    <label for="printter"><i style = "margin-right: 5px;" class="fas fa-print"></i>Chọn máy in: </label>
-                    <select name="printter" id="printter">
-                        <option value="printter1">Máy in 1</option>
-                        <option value="printter2">Máy in 2</option>
-                        <option value="printter3">Máy in 3</option>
-                        <option value="printter4">Máy in 4</option>
-                    </select>
-                </div>
-            </div>
-            <div id = "configureFile">
-                <div id = "choosePaperSize">
-                    <label id = "paperSize" for = "paperSize">Khổ giấy: </label>
-                    <select name="paperSize" id="paperSize">
-                        <option value="A4">A4</option>
-                        <option value="A3">A3</option>
-                    </select>
-                </div>
-                <div class = "choosePaperPrintAndSide"  id = "choosePaperPrint">
-                    <label for = "paperPrint">Trang in: </label>
-                    <div class="radioContainer">
-                        <div class="radioOption">
-                            <input type="radio" id="allPages" name="paperPrint" value="allPages" checked>
-                            <label for="allPages">Tất cả trang</label>
-                        </div>
-                        <div class="radioOption">
-                            <input type="radio" id="choosenPage" name="paperPrint" value="choosenPage">
-                            <label for="choosenPage">Chỉ trang được chọn</label>
-                        </div>
-                        <div class="radioOption">
-                            <input type="radio" id="chooseRange" name="paperPrint" value="chooseRange">
-                            <label for="chooseRange">In trong đoạn</label>
-                        </div>
-                        <div class="radioOption">
-                            <input type="text" id="startPage" name="startPage" placeholder="ví dụ: 1-2, 3-5" disabled>
-                        </div>
+        <form method="post" action="RequestPrinting.php" onsubmit="return ValidateRequest();" >
+            <h1 class="title">đăng ký in tài liệu</h1>
+            <p>Tệp tin cần in:</p>
+            <div class = "mainFrame">
+                <div id = "inputFile"> 
+                    <div id = uploadFile>
+                        <label id = "inputLabel" for="myFile"><i style = "margin-right: 5px;" class="fas fa-file"></i>Chọn tệp tin</label>
+                        <input style = "display: none;"type="file" id="myFile" name="filename" onchange="displayFileName()">
+                        <p id="selectedFileName">Không có tệp nào được chọn</p>
+                    </div>
+                    <div id = "choosePrintter">
+                        <label for="printter"><i style = "margin-right: 5px;" class="fas fa-print"></i>Chọn máy in: </label>
+                        <select name="printter" id="printter">
+                            <?php while($printerData = mysqli_fetch_assoc($printerResultPointer)){ ?>
+                                <option value="<?= $printerData['Printer_ID'] ?>"><?= $printerData['Printer_name'] ?></option>
+                            <?php } ?>
+                        </select>
                     </div>
                 </div>
-                <div class = "choosePaperPrintAndSide" id = "choosePaperSide">
-                    <label for = "paperSide">Mặt giấy: </label>
-                    <div class="radioContainer">
-                        <div class="radioOption">
-                            <input type="radio" id="oneSide" name="paperSide" checked>
-                            <label for="oneSide">Một mặt</label>
-                        </div>
-                        <div class="radioOption">
-                            <input type="radio" id="twoSide" name="paperSide">
-                            <label for="twoSide">Hai mặt</label>
+                <div id = "configureFile">
+                    <div id = "choosePaperSize">
+                        <label id = "paperSize" for = "paperSize">Khổ giấy: </label>
+                        <select name="paperSize" id="paperSize">
+                            <option value="A4">A4</option>
+                            <option value="A3">A3</option>
+                        </select>
+                    </div>
+                    <div class = "choosePaperPrintAndSide"  id = "choosePaperPrint">
+                        <label for = "paperPrint">Trang in: </label>
+                        <div class="radioContainer">
+                            <div class="radioOption">
+                                <input type="radio" id="allPages" name="paperPrint" value="allPages" checked>
+                                <label for="allPages">Tất cả trang</label>
+                            </div>
+                            <!--
+                            <div class="radioOption">
+                                <input type="radio" id="choosenPage" name="paperPrint" value="choosenPage">
+                                <label for="choosenPage">Chỉ trang được chọn</label>
+                            </div>
+                            -->
+                            <div class="radioOption">
+                                <input type="radio" id="chooseRange" name="paperPrint" value="chooseRange">
+                                <label for="chooseRange">In trong đoạn</label>
+                            </div>
+                            <div class="radioOption">
+                                <input type="text" id="startPage" name="startPage" placeholder="ví dụ: 1-2, 3-5" disabled>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div id = "chooseNumberPrint"> <!-- số bản in-->
-                    <label for = "numberPrint">Số bản in: </label>
-                    <input type = "number" placeholder="Nhập số bản in" id = "numberPrint" name = "numberPrint">
+                    <div class = "choosePaperPrintAndSide" id = "choosePaperSide">
+                        <label for = "paperSide">Mặt giấy: </label>
+                        <div class="radioContainer">
+                            <div class="radioOption">
+                                <input type="radio" id="oneSide" name="paperSide" value="1" checked>
+                                <label for="oneSide">Một mặt</label>
+                            </div>
+                            <div class="radioOption">
+                                <input type="radio" id="twoSide" name="paperSide" value="2">
+                                <label for="twoSide">Hai mặt</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div id = "chooseNumberPrint"> <!-- số bản in-->
+                        <label for = "numberPrint">Số bản in: </label>
+                        <input type = "number" placeholder="Nhập số bản in" id = "numberPrint" name = "numberPrint">
+                    </div>
                 </div>
             </div>
-        </div>
-        <button id = "submitButton">Đăng ký</button>
+            <button type="submit" id = "submitButton">Đăng ký</button>
+        </form>
     </div>
 
     <!-- body section ends -->
@@ -154,15 +175,18 @@
         function displayFileName() {
             var fileInput = document.getElementById('myFile');
             var fileNameDisplay = document.getElementById('selectedFileName');
-    
-            // Lấy tên của tệp tin đã chọn
-            var fileName = fileInput.value.split('\\').pop();
-    
-            // Hiển thị tên tệp tin
-            fileNameDisplay.innerText = fileName;
+            if (fileInput.files.length > 0){
+                // Lấy tên của tệp tin đã chọn
+                var fileName = fileInput.value.split('\\').pop();
+                // Hiển thị tên tệp tin
+                fileNameDisplay.innerText = fileName;
+            }else{
+                fileNameDisplay.innerHTML = "Không có tệp nào được chọn";
+            }
         }
 
     </script>
     <script src="printingService.js"></script>
+    <script src="Validate.js"></script>
 </body>
 </html>
