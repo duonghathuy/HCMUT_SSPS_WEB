@@ -1,47 +1,38 @@
 <?php
     @include_once("../ConnectDB.php");
 
+    $ID = $_POST['id'];
+    $Quantity = $_POST['quantity'];
+
     // Get Balance
     $sql = "SELECT Balance 
         FROM Users
-        WHERE ID = 1";
+        WHERE ID = '$ID'";
     $result = $conn->query($sql);
 
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        $balance = $row['Balance'];
-    }
+    $row = $result->fetch_assoc();
+    $balance = $row['Balance'];
 
     // Get Paper_Price
     $sql = "SELECT Paper_Price 
-    FROM Configuration
-    WHERE Role = 'Student'
-    ";
+            FROM Configuration
+            ";
     $result = $conn->query($sql);
 
-    $price = 0;
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        $price = $row['Paper_Price'];
-    }
+    $row = $result->fetch_assoc();
+    $price = $row['Paper_Price'];
 
-    // Save the new order to DB
-    if(isset($_POST['submit-order'])) {
-        // Get Quantity
-        $quantity = $_POST['quantity'];
+    // Calculate Total_Price
+    $Total_Price = $price * $Quantity;
 
-        // Get the current date and time
-        date_default_timezone_set('Asia/Ho_Chi_Minh');
-        $date = date("Y/m/d H:i:s");
+    // Get the current date and time
+    date_default_timezone_set('Asia/Ho_Chi_Minh');
+    $date = date("Y/m/d H:i:s");
 
-        // INSERT into DB
-        $sql = "INSERT INTO BPP_Order (Order_ID, Order_Creation_Date, Quantity, Payment_Status, Owner_ID)
-                VALUES (NULL, '$date', '$quantity', '0', '1')
+    // INSERT into DB
+    $sql = "INSERT INTO BPP_Order (Order_ID, Order_Creation_Date, Quantity, Total_Price, Payment_Status, Owner_ID)
+            VALUES (NULL, '$date', '$Quantity', '$Total_Price', '0', '$ID')
             ";
 
-        $conn->query($sql) or die("". $conn->error);
-    }
-
-    // Return
-    header("Location: BuyPrintingPages.php");
+    $conn->query($sql);
 ?>
