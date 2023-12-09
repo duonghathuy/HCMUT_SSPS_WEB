@@ -245,6 +245,64 @@ INSERT INTO `User_Addresses` (`User_ID`, `Province`, `District`, `Commune`, `Str
 (2110234, 'Thành Phố Hồ Chí Minh', 'Quận 7', 'Phường Bình Thuận', '3 Lâm Văn Bền');
 
 --
+-- Cấu trúc bảng cho bảng `campus_building`
+--
+
+CREATE TABLE `campus_building` (
+	`printer_campusloc` CHAR(1) CHECK (printer_campusloc IN ('1' , '2')),
+	`printer_buildingloc` CHAR(2)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `campus_building`
+--
+
+
+INSERT INTO `campus_building` (`printer_campusloc`, `printer_buildingloc`) 
+VALUES 
+('1', 'A2'), 
+('1', 'A3'), 
+('1', 'B1'), 
+('1', 'B2'), 
+('1', 'B4'), 
+('1', 'C4'), 
+('1', 'C6'), 
+('2', 'H1'), 
+('2', 'H2'), 
+('2', 'H3'), 
+('2', 'H6');
+
+-- --------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `printer_list`
+--
+
+
+CREATE TABLE `printer_list` (
+	`printer_id` VARCHAR(8) PRIMARY KEY,
+	`printer_name` VARCHAR(20) NOT NULL,
+	`printer_desc` VARCHAR(100),
+	`printer_avai` CHAR(1) CHECK (`printer_avai` IN ('Y' , 'N')),
+	`printer_campusloc` CHAR(1),
+	`printer_buildingloc` CHAR(2),
+	`printer_room` VARCHAR(3)
+);
+
+insert into `printer_list` (`printer_id`, `printer_name`, `printer_desc`, `printer_avai`, `printer_campusloc`, `printer_buildingloc`,  `printer_room`)
+VALUES 
+('2H11031', 'Canon 1', 'Lorem Ipsum', 'Y', '2', 'H1', '103'),
+('1A21011', 'Canon 1', 'Lorem Ipsum', 'Y', '1', 'A2', '101'),
+('1A21012', 'Canon 2', 'Lorem Ipsum', 'N', '1', 'A2', '101'),
+('1A33051', 'Canon 3', 'Lorem Ipsum', 'N', '1', 'A3', '305'),
+('1A33052', 'Canon 3', 'Lorem Ipsum', 'N', '1', 'A3', '305'),
+('1A33053', 'Canon 3', 'Lorem Ipsum', 'N', '1', 'A3', '305'),
+('2H22021', 'Canon 2', 'Lorem Ipsum', 'N', '2', 'H2', '202'),
+('2H62011', 'Canon 2', 'Lorem Ipsum', 'N', '2', 'H6', '201'),
+('2H62012', 'Canon 2', 'Lorem Ipsum', 'N', '2', 'H6', '201'),
+('2H62013', 'Canon 2', 'Lorem Ipsum', 'N', '2', 'H6', '201');
+
+--
 -- Chỉ mục cho các bảng đã đổ
 --
 
@@ -359,6 +417,9 @@ ALTER TABLE `User_Addresses`
   ADD CONSTRAINT `user_addresses_ibfk_1` FOREIGN KEY (`User_ID`) REFERENCES `Users` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
+ALTER TABLE `printer_list`  
+  ADD CONSTRAINT `printer_list_campus_building_ibfk_1` FOREIGN KEY (`printer_campusloc`, `printer_buildingloc`) REFERENCES `campus_building`(`printer_campusloc`, `printer_buildingloc`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
