@@ -85,20 +85,65 @@ INSERT INTO `Configuration` (`ID`, `Default_Number_Of_Pages`, `Paper_Price`) VAL
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc bảng cho bảng `campus_building`
+--
+
+CREATE TABLE `campus_building` (
+	`printer_campusloc` CHAR(1) CHECK (printer_campusloc IN ('1' , '2')),
+	`printer_buildingloc` CHAR(2)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `campus_building`
+--
+
+
+INSERT INTO `campus_building` (`printer_campusloc`, `printer_buildingloc`) 
+VALUES 
+('1', 'A2'), 
+('1', 'A3'), 
+('1', 'B1'), 
+('1', 'B2'), 
+('1', 'B4'), 
+('1', 'C4'), 
+('1', 'C6'), 
+('2', 'H1'), 
+('2', 'H2'), 
+('2', 'H3'), 
+('2', 'H6');
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc bảng cho bảng `Printer`
 --
 
 CREATE TABLE `Printer` (
   `Printer_ID` varchar(50) NOT NULL,
-  `Model` text DEFAULT NULL,
-  `Brand` text DEFAULT NULL,
-  `Description` text DEFAULT NULL,
-  `Position` text DEFAULT NULL
+  `Printer_name` VARCHAR(20) NOT NULL,
+	`Printer_desc` VARCHAR(100),
+	`Printer_avai` CHAR(1) CHECK (`printer_avai` IN ('Y' , 'N')),
+	`Printer_campusloc` CHAR(1),
+	`Printer_buildingloc` CHAR(2),
+	`Printer_room` VARCHAR(3)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `Printer`
 --
+insert into `printer_list` (`Printer_ID`, `Printer_name`, `Printer_desc`, `Printer_avai`, `Printer_campusloc`, `Printer_buildingloc`,  `Printer_room`)
+VALUES 
+('2H11031', 'Canon 1', 'Lorem Ipsum', 'Y', '2', 'H1', '103'),
+('1A21011', 'Canon 1', 'Lorem Ipsum', 'Y', '1', 'A2', '101'),
+('1A21012', 'Canon 2', 'Lorem Ipsum', 'N', '1', 'A2', '101'),
+('1A33051', 'Canon 3', 'Lorem Ipsum', 'N', '1', 'A3', '305'),
+('1A33052', 'Canon 3', 'Lorem Ipsum', 'N', '1', 'A3', '305'),
+('1A33053', 'Canon 3', 'Lorem Ipsum', 'N', '1', 'A3', '305'),
+('2H22021', 'Canon 2', 'Lorem Ipsum', 'N', '2', 'H2', '202'),
+('2H62011', 'Canon 2', 'Lorem Ipsum', 'N', '2', 'H6', '201'),
+('2H62012', 'Canon 2', 'Lorem Ipsum', 'N', '2', 'H6', '201'),
+('2H62013', 'Canon 2', 'Lorem Ipsum', 'N', '2', 'H6', '201');
+
 
 INSERT INTO `Printer` (`Printer_ID`, `Model`, `Brand`, `Description`, `Position`) VALUES
 ('Printer1', NULL, NULL, NULL, NULL),
@@ -244,63 +289,8 @@ INSERT INTO `User_Addresses` (`User_ID`, `Province`, `District`, `Commune`, `Str
 (2110104, 'Tỉnh Long An', 'Huyện Cần Giuộc', 'Xã Thuận Thành', '88 Thuận Tây'),
 (2110234, 'Thành Phố Hồ Chí Minh', 'Quận 7', 'Phường Bình Thuận', '3 Lâm Văn Bền');
 
---
--- Cấu trúc bảng cho bảng `campus_building`
---
-
-CREATE TABLE `campus_building` (
-	`printer_campusloc` CHAR(1) CHECK (printer_campusloc IN ('1' , '2')),
-	`printer_buildingloc` CHAR(2)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Đang đổ dữ liệu cho bảng `campus_building`
---
-
-
-INSERT INTO `campus_building` (`printer_campusloc`, `printer_buildingloc`) 
-VALUES 
-('1', 'A2'), 
-('1', 'A3'), 
-('1', 'B1'), 
-('1', 'B2'), 
-('1', 'B4'), 
-('1', 'C4'), 
-('1', 'C6'), 
-('2', 'H1'), 
-('2', 'H2'), 
-('2', 'H3'), 
-('2', 'H6');
 
 -- --------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `printer_list`
---
-
-
-CREATE TABLE `printer_list` (
-	`printer_id` VARCHAR(8) PRIMARY KEY,
-	`printer_name` VARCHAR(20) NOT NULL,
-	`printer_desc` VARCHAR(100),
-	`printer_avai` CHAR(1) CHECK (`printer_avai` IN ('Y' , 'N')),
-	`printer_campusloc` CHAR(1),
-	`printer_buildingloc` CHAR(2),
-	`printer_room` VARCHAR(3)
-);
-
-insert into `printer_list` (`printer_id`, `printer_name`, `printer_desc`, `printer_avai`, `printer_campusloc`, `printer_buildingloc`,  `printer_room`)
-VALUES 
-('2H11031', 'Canon 1', 'Lorem Ipsum', 'Y', '2', 'H1', '103'),
-('1A21011', 'Canon 1', 'Lorem Ipsum', 'Y', '1', 'A2', '101'),
-('1A21012', 'Canon 2', 'Lorem Ipsum', 'N', '1', 'A2', '101'),
-('1A33051', 'Canon 3', 'Lorem Ipsum', 'N', '1', 'A3', '305'),
-('1A33052', 'Canon 3', 'Lorem Ipsum', 'N', '1', 'A3', '305'),
-('1A33053', 'Canon 3', 'Lorem Ipsum', 'N', '1', 'A3', '305'),
-('2H22021', 'Canon 2', 'Lorem Ipsum', 'N', '2', 'H2', '202'),
-('2H62011', 'Canon 2', 'Lorem Ipsum', 'N', '2', 'H6', '201'),
-('2H62012', 'Canon 2', 'Lorem Ipsum', 'N', '2', 'H6', '201'),
-('2H62013', 'Canon 2', 'Lorem Ipsum', 'N', '2', 'H6', '201');
 
 --
 -- Chỉ mục cho các bảng đã đổ
