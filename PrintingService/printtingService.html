@@ -34,7 +34,7 @@
             <a href="" class="username-header">Username</a>
             <div class="seperator">|</div>
             <div>
-                <a href="#" class="login">Đăng xuất</a>
+                <a href="#" class="logout">Đăng xuất</a>
             </div>
         </div>
     </section>
