@@ -6,22 +6,22 @@
     $selectPrinterQuery = "SELECT * FROM printer";
     $printerResultPointer = mysqli_query($connection,$selectPrinterQuery);
 ?>
-<?php if (isset($_SESSION['errorMessage'])){ ?>
-    <script>
-        window.alert("<?= $_SESSION['errorMessage'] ?>")
-    </script>
-    <?php
-        unset($_SESSION['errorMessage']);
-    ?>
-<?php } ?>
-<?php if (isset($_SESSION['requestSuccess'])){ ?>
-    <script>
-        window.alert("Successfully request printing for a document\n");
-    </script>
-    <?php
-        unset($_SESSION['requestSuccess']);
-    ?>
-<?php } ?>
+    <?php if (isset($_SESSION['errorMessage'])){ ?>
+        <script>
+            window.alert("<?= $_SESSION['errorMessage'] ?>");
+        </script>
+        <?php
+            unset($_SESSION['errorMessage']);
+        ?>
+    <?php } ?>
+    <?php if (isset($_SESSION['requestSuccess'])){ ?>
+        <script>
+            window.alert("Successfully request printing for a document\n");
+        </script>
+        <?php
+            unset($_SESSION['requestSuccess']);
+        ?>
+    <?php } ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -73,14 +73,14 @@
     <!-- body section starts -->
 
     <div class="body">
-        <form method="post" action="RequestPrinting.php" onsubmit="return ValidateRequest();" >
+        <form method="post" action="RequestPrinting.php" onsubmit="return ValidateRequest();" enctype="multipart/form-data">
             <h1 class="title">đăng ký in tài liệu</h1>
             <p>Tệp tin cần in:</p>
             <div class = "mainFrame">
                 <div id = "inputFile"> 
                     <div id = uploadFile>
                         <label id = "inputLabel" for="myFile"><i style = "margin-right: 5px;" class="fas fa-file"></i>Chọn tệp tin</label>
-                        <input style = "display: none;"type="file" id="myFile" name="filename" onchange="displayFileName()">
+                        <input style = "display: none;" type="file" id="myFile" name="filename" onchange="displayFileName()">
                         <p id="selectedFileName">Không có tệp nào được chọn</p>
                     </div>
                     <div id = "choosePrintter">
@@ -196,5 +196,21 @@
     </script>
     <script src="printingService.js"></script>
     <script src="Validate.js"></script>
+    <?php if (isset($_SESSION['errorMessage'])){ ?>
+        <script>
+            window.alert(<?= $_SESSION['errorMessage'] ?>)
+        </script>
+        <?php
+            unset($_SESSION['errorMessage']);
+        ?>
+    <?php } ?>
+    <?php if (isset($_SESSION['requestSuccess'])){ ?>
+        <script>
+            window.alert("Successfully request printing for a document\n");
+        </script>
+        <?php
+            unset($_SESSION['requestSuccess']);
+        ?>
+    <?php } ?>
 </body>
 </html>

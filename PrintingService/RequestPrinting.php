@@ -24,7 +24,7 @@ if (isset($_SESSION) == false){
         $range = $_POST['startPage'];
     }
 
-    if (!is_uploaded_file($_FILES['fileName']['tmp_name'])){
+    if (!is_uploaded_file($_FILES['filename']['tmp_name'])){
         $_SESSION["errorMessage"] .= "File is not uploaded\n";
     }
     
@@ -39,12 +39,16 @@ if (isset($_SESSION) == false){
         $_SESSION["errorMessage"] .= "File extension is not allowed\n";
     }
 
-    if (!move_uploaded_file($_FILES['fileName']["tmp_name"],$targetFile)){
+    if (!move_uploaded_file($_FILES['filename']["tmp_name"],$targetFile)){
         $_SESSION['errorMessage'] .= "There was an error uploading your file\n";
+    }
+    if ($_SESSION['errorMessage'] != ""){
+        header("location: printtingService.php");
+        return;
     }
     $fileName = $_FILES['filename']['name'];
     $addRequestQuerry = "INSERT INTO printing_request(Registration_Date, File_Name, Pages_Per_Sheet, Number_Of_Copies,Printer_ID,Request_Status,Owner_ID) 
-    VALUES (NOW(),'$fileName',$paperSide,$numberOfCopies,'$printterId','Đã gửi',$userId);";
+    VALUES (NOW(),\"$fileName\",$paperSide,$numberOfCopies,'$printterId','Đã gửi',$userId);";
     if (mysqli_query($connection,$addRequestQuerry) == false){
         $_SESSION['errorMessage'] .= "Insert into printing_request failed\n";
     }
@@ -59,7 +63,6 @@ if (isset($_SESSION) == false){
             $_SESSION['errorMessage'] = "Insert into requested_page_numbers failed\n";
         }
     }
-
     if ($_SESSION['errorMessage'] == ""){
         unset($_SESSION["errorMessage"]);
         $_SESSION['requestSuccess'] = "success";
