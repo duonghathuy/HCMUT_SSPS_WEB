@@ -282,7 +282,7 @@ if (isset($_SESSION['username']) && !empty($_SESSION['username'])) {
         $(document).ready(function () {
             $('select[name="printer"]').change(function () {
                 var selectedPrinter = $(this).val();
-                $.post('getPrinterDetails.php', { printerId: selectedPrinter }, function (response) {
+                $.post('getPrinterDetails.php', { printerId: selectedPrinter     }, function (response) {
                     var printer = JSON.parse(response);
                     $('.printer-info-text').eq(0).text(printer.Printer_ID);
                     $('.printer-info-text').eq(1).text(printer.Printer_name);
