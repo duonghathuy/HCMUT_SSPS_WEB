@@ -4,7 +4,7 @@
 if (isset($_POST['printerId'])) {
     $printerId = $_POST['printerId'];
 
-    $query = "SELECT * FROM printer_list WHERE printer_id = '$printerId'";
+    $query = "SELECT * FROM Printer WHERE Printer_ID = '$printerId'";
     $result = $conn->query($query);
 
     if ($result) {

@@ -57,13 +57,13 @@ if (isset($_SESSION['username']) && !empty($_SESSION['username'])) {
                         <p>ĐẠI HỌC QUỐC GIA TP.HCM<br>TRƯỜNG ĐẠI HỌC BÁCH KHOA</p>
                     </a>
                 </div>
-                
+
                 <div class="menu-bar">
                     <div class="first-option"><a href="">trang chủ</a></div>
-                    <div class="second-option"><a href="" >dịch vụ của tôi</a></div>
+                    <div class="second-option"><a href="">dịch vụ của tôi</a></div>
                 </div>
             </div>
-        
+
             <div class="right-side">
                 <a href="" class="username-header">Username</a>
                 <div class="seperator">|</div>
@@ -287,7 +287,7 @@ if (isset($_SESSION['username']) && !empty($_SESSION['username'])) {
                     $('.printer-info-text').eq(0).text(printer.Printer_ID);
                     $('.printer-info-text').eq(1).text(printer.Printer_name);
                     $('.printer-info-text').eq(2).text(printer.Printer_room);
-                    $('.printer-info-text').eq(3).text(printer.Printer_avai == 'Y' ? 'Đang hoạt động' : 'Không hoạt động');
+                    $('.printer-info-text').eq(3).text(printer.Printer_avai === 'Y' ? 'Đang hoạt động' : 'Không hoạt động');
                 });
             });
         });
